@@ -13,7 +13,7 @@ function NavBar() {
                    
                     <Link to="/" className="nav">Home</Link>
                     <Link to="/menu" className="nav">Menu</Link>
-                    <Link to="/register" className="nav">Register</Link>
+                    <Link to="/reservation" className="nav">Make A Reservation </Link>
                     <Link to="/profile" className="nav">Profile</Link>
                     <Link to="/about-us" className="nav">About Us</Link>
                     
