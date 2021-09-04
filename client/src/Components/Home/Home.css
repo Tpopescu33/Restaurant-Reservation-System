@@ -1,0 +1,9 @@
+.title-background{
+    padding: 0px 120px;
+}
+.sub-title1{
+    color:black;
+    background-color: rgba(255,255,255,0.5);
+    border: 7px solid orange;
+    border-radius: 10px;
+}
