@@ -20,6 +20,12 @@ const Login = () => {
             </head>
             
             <body>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
                 <div class="login-page">
                     <h2 class="center">Member Login</h2>
                     <div class="center">
@@ -34,7 +40,7 @@ const Login = () => {
                             </div>
                             <button class="btn-submit-fn" type="submit" name="Sign-in" >Sign in</button>
                         </form>
-                        <p class="Not-Register">Don't have an account? <Link to="/Register"><u><b>   Register here!   </b></u></Link></p>
+                        <p class="Not-Register">Don't have an account? <Link to="/Registration"><u><b>   Register here!   </b></u></Link></p>
                     </div>
                 </div>
                 </body>

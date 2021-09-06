@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom"
 import Home from './Components/Home/Home'
 import NavBar from './Components/Navbar/NavBar'
 import Login from './Components/Login/Login'
-
+import Registration from './Components/Registration/Registration'
 import './App.css';
 
 function App() {
@@ -18,6 +18,9 @@ function App() {
             </div>
             <div className='container'>
               <Route exact path="/login" component={Login} />
+            </div>
+            <div className='container'>
+              <Route exact path="/Registration" component={Registration} />
             </div>
         </Router>
     
