@@ -21,11 +21,11 @@ const Login = () => {
             
             <body>
                 <div class="login-page">
-                    <h2 class="center">Login</h2>
+                    <h2 class="center">Member Login</h2>
                     <div class="center">
                         <form class = "login-form" >
                             <div class = "form-user">
-                                <input type="text" class="form-control" id= "username" name="username" placeholder="Username" required="required"
+                                <input type="text" class="form-control" id= "email" name="Email" placeholder="Email" required="required"
                                 />
                             </div>
                             <div class = "form-password">
