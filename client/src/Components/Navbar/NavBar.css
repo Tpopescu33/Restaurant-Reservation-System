@@ -1,8 +1,10 @@
 .navbar{
     background-color: #333;
     position: fixed;
-    width:105%;
+    width:101%;
     top:0;
+    margin-left: -10px;
+    
     
 }
 .logo{
@@ -31,21 +33,27 @@
     color:white;
     background-color:#333;
     border: 2px solid whitesmoke;
-    float:left;
+    float: right;
     display:block;
     margin-top:20px;
     margin-left:30px;
+    margin-right:50px;
     padding: 20px;
+    width: 150px;
+    
+    
+   
 }
 .btn-register {
     color:white;
     background-color:#333;
     border: 2px solid whitesmoke;
-    float:left;
+    float:right;
     display:block;
     margin-top:20px;
     margin-left:30px;
     padding: 20px;
+    width: 150px
 }
 /* Change color of dropdown links on hover */
 .list .nav:hover {background-color:turquoise;}
