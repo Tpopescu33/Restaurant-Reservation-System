@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom"
 import Home from './Components/Home/Home'
 import NavBar from './Components/Navbar/NavBar'
@@ -7,17 +7,22 @@ import Registration from './Components/Registration/Registration'
 import './App.css';
 
 function App() {
+
+  const [isAuth, setIsAuth] = useState(false);  
+
   return (
     <div className="App">
      
         
         <Router>
-            <NavBar/>
+            <NavBar isAuth={isAuth} setIsAuth={setIsAuth}/>
             <div className='container'>
               <Route exact path="/" component={Home} />
             </div>
             <div className='container'>
-              <Route exact path="/login" component={Login} />
+            <Route path="/login">
+             <Login isAuth={isAuth} setIsAuth={setIsAuth}/>
+          </Route>
             </div>
             <div className='container'>
               <Route exact path="/Registration" component={Registration} />
