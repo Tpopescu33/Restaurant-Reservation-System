@@ -4,6 +4,7 @@
     width:105%;
     top:0;
     
+    
 }
 .logo{
     float:left;
@@ -31,11 +32,15 @@
     color:white;
     background-color:#333;
     border: 2px solid whitesmoke;
-    float:left;
+    float: left;
     display:block;
     margin-top:20px;
     margin-left:30px;
     padding: 20px;
+    width: 150px;
+    
+    
+   
 }
 .btn-register {
     color:white;
@@ -46,6 +51,7 @@
     margin-top:20px;
     margin-left:30px;
     padding: 20px;
+    width: 150px
 }
 /* Change color of dropdown links on hover */
 .list .nav:hover {background-color:turquoise;}
