@@ -4,6 +4,7 @@ import Home from './Components/Home/Home'
 import NavBar from './Components/Navbar/NavBar'
 import Login from './Components/Login/Login'
 import Registration from './Components/Registration/Registration'
+import Reservation from './Components/Reservation/Reservation';
 import './App.css';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
             </div>
             <div className='container'>
               <Route exact path="/Registration" component={Registration} />
+            </div>
+            <div className='container'>
+              <Route exact path="/Reservation" component={Reservation} />
             </div>
         </Router>
     
