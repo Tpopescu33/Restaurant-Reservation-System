@@ -20,7 +20,7 @@ const Registration = () => {
                 <div class="center">
                     <form class = "register-form">
                         <div class = "register-form-user">
-                            <input type="text" class="form-control" name="email" placeholder="Emai" required="required" 
+                            <input type="text" class="form-control" name="email" placeholder="Email" required="required" 
                             />
                         </div>
                         <div class = "register-form-password">

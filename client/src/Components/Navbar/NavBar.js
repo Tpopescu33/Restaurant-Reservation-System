@@ -29,7 +29,7 @@ function NavBar(props) {
                     ) : (
                         <div>
                             <Link to="/login"> <button className="btn-signin">Sign In</button> </Link>
-                            <Link to="/register"> <button className="btn-register">Register</button> </Link>
+                            <Link to="/Registration"> <button className="btn-register">Register</button> </Link>
                         </div>
                     )}
                     
