@@ -1,0 +1,16 @@
+.bottom{
+    background-color: #333;
+    position:static;
+    width:105%;
+    height:5%;
+    margin:0;
+    padding:0;
+    bottom:0;
+    margin-left: -10px;
+    overflow: hidden;
+}
+.message{
+    color:white;
+    text-align: center;
+    font-size:20px;
+}
