@@ -23,9 +23,12 @@ function NavBar(props) {
                     <Link to="/menu" className="nav">Menu</Link>
                     <Link to="/reservation" className="nav">Make A Reservation </Link>
                     <Link to="/about-us" className="nav">About Us</Link>
-
+                    
                     {(isAuth === true) ? (
-                        <Link to="/login"><button className="btn-signin" onClick={handleSignOut}>Sign Out</button></Link>
+                        <div>
+                            <Link to="/Profile" className="nav">Edit Profile</Link>)
+                            <Link to="/login"><button className="btn-signin" onClick={handleSignOut}>Sign Out</button></Link>
+                        </div>
                     ) : (
                         <div>
                             <Link to="/login"> <button className="btn-signin">Sign In</button> </Link>
