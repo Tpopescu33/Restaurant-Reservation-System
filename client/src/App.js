@@ -10,7 +10,7 @@ import './App.css';
 
 function App() {
 
-  const [isAuth, setIsAuth] = useState(false);  
+  const [isAuth, setIsAuth] = useState(true);  
 
   return (
     <div className="App">
