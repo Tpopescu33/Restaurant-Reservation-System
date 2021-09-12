@@ -9,15 +9,74 @@ const Reservation = (props) => {
         isAuth
     } = props;
 
-    const [isHoliday, setIsHoliday] = useState();
-    const [fullName, setFullName] = useState();
-    const [contactNumber, setContactNumber] = useState();
-    const [emailAddress, setEmailAddress] = useState();
-    const [numGuests, setNumGuests] = useState();
-    const [resDate, setResDate] = useState();
-    const [resTime, setResTime] = useState();
+    const [isHoliday, setIsHoliday] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [contactNumber, setContactNumber] = useState('');
+    const [emailAddress, setEmailAddress] = useState('');
+    const [numGuests, setNumGuests] = useState('');
+    const [resDate, setResDate] = useState('');
+    const [resTime, setResTime] = useState('');
+    const [fullNameErr, setFullNameErr] = useState('')
+    const [contactNumberErr, setContactNumberErr] = useState('')
+    const [emailAddressErr, setEmailAddressErr] = useState('')
+    const [numGuestsErr, setNumGuestsErr] = useState('')
+    const [resDateErr, setResDateErr] = useState('')
+    const [resTimeErr, setResTimeErr] = useState('')
 
+    const clearForm = (e) => {
+        setFullName('')
+        setContactNumber('')
+        setEmailAddress('')
+        setNumGuests('')
+        setResDate('')
+        setResTime("")
+    }
 
+    const handleSubmit = (e) =>{
+        const isValid = formValidation()
+
+    }
+
+    const formValidation =()=>{
+        const fullNameError = {}
+        const contactNumberError =  {}
+        const emailAddressError = {}
+        const numGuestsError = {}
+        const resDateError = {}
+        const resTimeError = {}
+        let isValid = true
+
+        if(fullName === ''){
+            fullNameError.errFullName = "Full Name is required";
+            isValid = false;
+        }
+        if(contactNumber === ''){
+            contactNumberError.errContactNum = "Contact Number is required";
+            isValid = false;
+        }
+        if(emailAddress === ''){
+            emailAddressError.errEmail = "Email Address is required"
+        }
+        if(numGuests === ""){
+            numGuestsError.errNumGuests = "Number of Guests is required"
+        }
+        if (resDate === ''){
+            resDateError.errDate = "Reservation Date is required"
+        }
+        if (resTime === ""){
+            resTimeError.errTime = "Reservation Time is required"
+        }
+        setFullNameErr(fullNameError)
+        setContactNumberErr(contactNumberError)
+        setEmailAddressErr(emailAddressError)
+        setNumGuestsErr(numGuestsError)
+        setResDateErr(resDateError)
+        setResTimeErr(resTimeError)
+
+        return isValid;
+    }
+
+    console.log(fullName, contactNumber,emailAddress, numGuests, resDate, resTime)
 
 
     return (
@@ -38,6 +97,11 @@ const Reservation = (props) => {
                             name="fullName"
                             placeholder="Full Name"
                         />   
+                        {Object.keys(fullNameErr).map((key)=>{
+                            return <div 
+                            className = "err-msg">{fullNameErr[key]}</div>
+                    })}     
+
                          <label>Contact Number:</label>
                          <input
                             className="form1"
@@ -50,6 +114,10 @@ const Reservation = (props) => {
                             name="contactNumber"
                             placeholder="Contact Number"
                         />  
+                        {Object.keys(contactNumberErr).map((key)=>{
+                            return <div 
+                            className = "err-msg">{contactNumberErr[key]}</div>
+                    })} 
                          <label>Email Address:</label>
                          <input
                             className="form1"
@@ -62,6 +130,10 @@ const Reservation = (props) => {
                             name="emailAddress"
                             placeholder="Email Address"
                         />  
+                        {Object.keys(emailAddressErr).map((key)=>{
+                            return <div 
+                            className = "err-msg">{emailAddressErr[key]}</div>
+                    })}                        
                          <label>Number of Guests:</label>
                          <input
                             className="form2"
@@ -74,6 +146,10 @@ const Reservation = (props) => {
                             name="numGuests"
                             placeholder="Number of Guests"
                         />  
+                        {Object.keys(numGuestsErr).map((key)=>{
+                            return <div 
+                            className = "err-msg">{numGuestsErr[key]}</div>
+                    })} 
                          <label>Date:</label>
                          <input
                             className="form2"
@@ -86,6 +162,10 @@ const Reservation = (props) => {
                             name="resDate"
                             placeholder="Date"
                         />  
+                        {Object.keys(resDateErr).map((key)=>{
+                            return <div 
+                            className = "err-msg">{resDateErr[key]}</div>
+                    })} 
                          <label>Time:</label>
                          <input
                             className="form2"
@@ -98,13 +178,18 @@ const Reservation = (props) => {
                             name="resTime"
                             placeholder="Time"
                         /> 
+                        {Object.keys(resTimeErr).map((key)=>{
+                            return <div 
+                            className = "err-msg">{resTimeErr[key]}</div>
+                    })} 
+                        
 
 
                     </div>
 
                     <div className="btn-container">
-                        <button date-testid="submitRes" className="btn-submit">Submit Reservation</button>
-                        <button date-testid="submitRes" className="btn-clear">Clear Form</button>
+                        <button date-testid="submitRes" onClick={handleSubmit} className="btn-submit">Submit Reservation</button>
+                        <button date-testid="submitRes" onClick={clearForm} className="btn-clear">Clear Form</button>
                     </div>
             </div>
         </div>
