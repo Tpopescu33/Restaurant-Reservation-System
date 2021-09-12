@@ -18,20 +18,22 @@ function App() {
         
         <Router>
             <NavBar isAuth={isAuth} setIsAuth={setIsAuth}/>
+
             <div className='container'>
               <Route exact path="/" component={Home} />
-            </div>
-            <div className='container'>
-            <Route path="/login">
+
+          <Route path="/login">
              <Login isAuth={isAuth} setIsAuth={setIsAuth}/>
           </Route>
+            
+          <Route exact path="/Registration" component={Registration} />
+            
+          <Route path="/Reservation">
+             <Reservation isAuth={isAuth} setIsAuth={setIsAuth}/>
+          </Route>
+          
             </div>
-            <div className='container'>
-              <Route exact path="/Registration" component={Registration} />
-            </div>
-            <div className='container'>
-              <Route exact path="/Reservation" component={Reservation} />
-            </div>
+
             <Footer />
         </Router>
     
