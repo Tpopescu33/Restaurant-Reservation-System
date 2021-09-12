@@ -103,7 +103,7 @@ const Reservation = (props) => {
     return (
         <div>
             <div className="res-background">
-               <h1 className="title-res">Reservations</h1>
+               <h1 className="title-res">Make A Reservation</h1>
                     <div className="res-form">
                         <label>Name:</label>
                         <input
