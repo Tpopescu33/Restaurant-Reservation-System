@@ -25,8 +25,9 @@ const Reservation = (props) => {
             <div className="res-background">
                <h1 className="title-res">Reservations</h1>
                     <div className="res-form">
-
+                        <label>Name:</label>
                         <input
+                        
                             className="form1"
                             id="fullName"
                             data-testid="testFullName"
@@ -37,6 +38,7 @@ const Reservation = (props) => {
                             name="fullName"
                             placeholder="Full Name"
                         />   
+                         <label>Contact Number:</label>
                          <input
                             className="form1"
                             id="contactNumber"
@@ -48,6 +50,7 @@ const Reservation = (props) => {
                             name="contactNumber"
                             placeholder="Contact Number"
                         />  
+                         <label>Email Address:</label>
                          <input
                             className="form1"
                             id="emailAddress"
@@ -59,6 +62,7 @@ const Reservation = (props) => {
                             name="emailAddress"
                             placeholder="Email Address"
                         />  
+                         <label>Number of Guests:</label>
                          <input
                             className="form2"
                             id="numGuests"
@@ -70,6 +74,7 @@ const Reservation = (props) => {
                             name="numGuests"
                             placeholder="Number of Guests"
                         />  
+                         <label>Date:</label>
                          <input
                             className="form2"
                             id="resDate"
@@ -81,6 +86,7 @@ const Reservation = (props) => {
                             name="resDate"
                             placeholder="Date"
                         />  
+                         <label>Time:</label>
                          <input
                             className="form2"
                             id="resTime"
@@ -94,6 +100,11 @@ const Reservation = (props) => {
                         /> 
 
 
+                    </div>
+
+                    <div className="btn-container">
+                        <button date-testid="submitRes" className="btn-submit">Submit Reservation</button>
+                        <button date-testid="submitRes" className="btn-clear">Clear Form</button>
                     </div>
             </div>
         </div>

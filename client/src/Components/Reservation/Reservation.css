@@ -35,16 +35,17 @@
   .btn-container{
     padding:10px 0px;
   }
-  .btn-edit{
+  .btn-clear{
     width:10%;
     color:whitesmoke;
     font-size:17px;
     font-weight:600;
-    background-color:#333;
+    background-color:rgb(167, 41, 41);
     border-radius: 20%;
-    padding:20px 5px;
+    padding:20px 15px;
+    margin-left: 15px;
   }
-  .btn-save{
+  .btn-submit{
     width:10%;
     color:whitesmoke;
     font-size:17px;
@@ -57,8 +58,8 @@
   .res-form .form1{
     display:block;
     width: 20%;
-    padding:20px; 
-    margin-bottom: 20px;
+    padding:15px; 
+    margin-bottom: 15px;
     text-align: left;
    
     appearance: none;
@@ -66,7 +67,7 @@
     border:none;
     outline:none;
     background-color: rgba(255,255,255,0.5);
-    border-radius: 0px 0px 16px 16px;
+    border-radius: 16px 16px 16px 16px;
    
     box-shadow: 0px 5px rgba(0,0,0,0.2);
   
@@ -79,8 +80,8 @@
   .res-form .form2{
     display:block;
     width: 10%;
-    padding:20px; 
-    margin-bottom: 20px;
+    padding:15px; 
+    margin-bottom: 15px;
     text-align: center;
    
     appearance: none;
@@ -88,7 +89,7 @@
     border:none;
     outline:none;
     background-color: rgba(255,255,255,0.5);
-    border-radius: 0px 0px 16px 16px;
+    border-radius: 16px 16px 16px 16px;
    
     box-shadow: 0px 5px rgba(0,0,0,0.2);
   
