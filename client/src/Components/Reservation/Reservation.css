@@ -20,10 +20,11 @@
   }
   .err-msg{
     padding:5px 15px;
-    font-size: 25px;
+    font-size: 10px;
     color: red;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     background-color: rgba(255,255,255,0.75);
+    border-radius: 16px 16px 16px 16px;
   }
 
   .title-res{

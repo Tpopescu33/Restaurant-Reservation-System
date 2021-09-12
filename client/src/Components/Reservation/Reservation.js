@@ -30,6 +30,13 @@ const Reservation = (props) => {
         setNumGuests('')
         setResDate('')
         setResTime("")
+        setFullNameErr('')
+        setContactNumberErr('')
+        setEmailAddressErr('')
+        setNumGuestsErr('')
+        setResDateErr('')
+        setResTimeErr("")
+        
     }
 
     const handleSubmit = (e) =>{
