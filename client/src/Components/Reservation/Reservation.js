@@ -9,7 +9,8 @@ const Reservation = (props) => {
         isAuth
     } = props;
 
-    const [isHoliday, setIsHoliday] = useState('');
+    const [tablesAvailable, setTablesAvailable] = useState('10')
+    const [isHoliday, setIsHoliday] = useState("2021-07-04");
     const [fullName, setFullName] = useState('');
     const [contactNumber, setContactNumber] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
@@ -38,10 +39,11 @@ const Reservation = (props) => {
         setResTimeErr("")
         
     }
+    
 
     const handleSubmit = (e) =>{
         const isValid = formValidation()
-
+        
     }
 
     const formValidation =()=>{
@@ -63,15 +65,27 @@ const Reservation = (props) => {
         }
         if(emailAddress === ''){
             emailAddressError.errEmail = "Email Address is required"
+            isValid = false;
         }
         if(numGuests === ""){
             numGuestsError.errNumGuests = "Number of Guests is required"
+            isValid = false;
         }
-        if (resDate === ''){
+        if(resDate === ''){
             resDateError.errDate = "Reservation Date is required"
+            isValid = false;
         }
-        if (resTime === ""){
+        if(resTime === ""){
             resTimeError.errTime = "Reservation Time is required"
+            isValid = false;
+        }
+        if(!emailAddress.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
+            emailAddressError.errEmail = "Email Address is invalid"
+            isValid = false;
+        }
+        if(!contactNumber.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/)){
+            contactNumberError.errContactNum = "Contact Number is invalid";
+            isValid = false;
         }
         setFullNameErr(fullNameError)
         setContactNumberErr(contactNumberError)
