@@ -80,10 +80,11 @@
  
   .res-form .form2{
     display:block;
-    width: 10%;
-    padding:15px; 
+    width: 9.9%;
+    padding:14px; 
     margin-bottom: 15px;
     text-align: center;
+    
    
     appearance: none;
     background: white;
@@ -99,3 +100,27 @@
   
     transition: 0.4s ease; 
   }
+
+  .res-form .form3{
+    display:block;
+    width: 10.3%;
+    padding:10px; 
+    margin-bottom: 15px;
+    text-align: center;
+    
+   
+    appearance: none;
+    background: white;
+    border:none;
+    outline:none;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 16px 16px 16px 16px;
+   
+    box-shadow: 0px 5px rgba(0,0,0,0.2);
+  
+    color:#313131;
+    font-size:20px;
+  
+    transition: 0.4s ease; 
+  }
+  

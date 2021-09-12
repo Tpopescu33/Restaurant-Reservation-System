@@ -173,7 +173,7 @@ const Reservation = (props) => {
                     })} 
                          <label>Date:</label>
                          <input
-                            className="form2"
+                            className="form3"
                             id="resDate"
                             data-testid="testResDate"
                             required
@@ -189,7 +189,7 @@ const Reservation = (props) => {
                     })} 
                          <label>Time:</label>
                          <input
-                            className="form2"
+                            className="form3"
                             id="resTime"
                             data-testid="testResTime"
                             required
