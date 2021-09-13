@@ -197,7 +197,7 @@ const Reservation = (props) => {
                             value={numGuests}
                             onChange={(e) => setNumGuests(e.target.value)}
                             type="number"
-                            min="0"
+                            min="1"
                             name="numGuests"
                             placeholder="Number of Guests"
                         />  
