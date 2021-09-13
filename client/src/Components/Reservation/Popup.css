@@ -51,3 +51,16 @@
     border-radius: 20%;
     padding:20px 5px;
 }
+
+.popup-inner .accept-btn{
+    position: absolute;
+    bottom: 20px;
+    left: 150px;
+    width:200px;
+    color:whitesmoke;
+    font-size:17px;
+    font-weight:600;
+    background-color:rgb(53, 155, 107);
+    border-radius: 20%;
+    padding:20px 5px;
+}

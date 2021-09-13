@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 
 import './Reservation.css';
 import Popup1 from "./Popup1";
+import Popup2 from "./Popup2";
+import Popup3 from "./Popup3";
 
 const Reservation = (props) => {
 
@@ -10,8 +12,8 @@ const Reservation = (props) => {
         isAuth
     } = props;
 
-
-
+    const [popup3Trigger, setPopup3Trigger] = useState(false)
+    const [popup2Trigger, setPopup2Trigger] = useState(false)
     const [popup1Trigger, setPopup1Trigger] = useState(false)
     const [tablesAvailable, setTablesAvailable] = useState('10')
     const [isHoliday, setIsHoliday] = useState(false);
@@ -48,9 +50,24 @@ const Reservation = (props) => {
 
     const handleSubmit = (e) =>{
         const isValid = formValidation()
-
-        if(isAuth === false && isValid === true){
+       
+        if(isAuth === false && isValid === true && isHoliday === false){
             setPopup1Trigger(true)
+        }
+        if(isAuth === false && isValid === true && isHoliday === true){
+            setPopup2Trigger(true)
+        }
+        if(isAuth === true && isValid === true && isHoliday === true){
+            setPopup3Trigger(true)
+        }
+        
+    }
+
+    const checkHoliday =()=>{
+        if (holidayList.includes(resDate)){
+            setIsHoliday(true)
+        } else {
+            setIsHoliday(false)
         }
         
     }
@@ -108,6 +125,8 @@ const Reservation = (props) => {
 
     console.log(fullName, contactNumber,emailAddress, numGuests, resDate, resTime)
 
+
+    useEffect(()=> checkHoliday(),[handleSubmit])
 
     return (
         <div>
@@ -225,6 +244,16 @@ const Reservation = (props) => {
                         <Popup1 trigger={popup1Trigger} setTrigger={setPopup1Trigger}>
                             <h1>Would you like to register to earn rewards?</h1>
                         </Popup1>
+                        <Popup2 trigger={popup2Trigger} setTrigger={setPopup2Trigger}>
+                            <h3>You have choosen to make a reservation on a Holiday</h3>
+                            <h3>We require a Credit Card on file to reserve a table on a Holiday</h3>
+                            <h3>Please register</h3>
+                        </Popup2>
+                        <Popup3 trigger={popup3Trigger} setTrigger={setPopup3Trigger}>
+                        <h3>You have choosen to make a reservation on a Holiday</h3>
+                        <h3>A $10 holding fee will be automatically charged to your Credit Card</h3>
+                        <h3>Your fee will be refunded, unless you "No Show"</h3>
+                        </Popup3>
                     </div>
             </div>
         </div>
