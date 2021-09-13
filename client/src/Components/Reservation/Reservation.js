@@ -17,7 +17,7 @@ const Reservation = (props) => {
     const [popup3Trigger, setPopup3Trigger] = useState(false)
     const [popup2Trigger, setPopup2Trigger] = useState(false)
     const [popup1Trigger, setPopup1Trigger] = useState(false)
-    const [tablesAvailable, setTablesAvailable] = useState(false)
+    const [tablesAvailable, setTablesAvailable] = useState(true)
     const [isHoliday, setIsHoliday] = useState(false);
     const [holidayList, setHolidayList] = useState(["2021-07-04"]);
     const [fullName, setFullName] = useState('');
