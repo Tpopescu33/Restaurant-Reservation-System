@@ -93,10 +93,17 @@ const Reservation = (props) => {
         if(contactNumber === ''){
             contactNumberError.errContactNum = "Contact Number is required";
             isValid = false;
+        } else if(!contactNumber.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/)){
+            contactNumberError.errContactNum = "Contact Number is invalid";
+            isValid = false;
         }
         if(emailAddress === ''){
             emailAddressError.errEmail = "Email Address is required"
             isValid = false;
+        } else if (!emailAddress.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
+                emailAddressError.errEmail = "Email Address is invalid"
+                isValid = false;
+            
         }
         if(numGuests === ""){
             numGuestsError.errNumGuests = "Number of Guests is required"
@@ -110,14 +117,7 @@ const Reservation = (props) => {
             resTimeError.errTime = "Reservation Time is required"
             isValid = false;
         }
-        if(!emailAddress.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
-            emailAddressError.errEmail = "Email Address is invalid"
-            isValid = false;
-        }
-        if(!contactNumber.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/)){
-            contactNumberError.errContactNum = "Contact Number is invalid";
-            isValid = false;
-        }
+        
         setFullNameErr(fullNameError)
         setContactNumberErr(contactNumberError)
         setEmailAddressErr(emailAddressError)
@@ -197,6 +197,7 @@ const Reservation = (props) => {
                             value={numGuests}
                             onChange={(e) => setNumGuests(e.target.value)}
                             type="number"
+                            min="0"
                             name="numGuests"
                             placeholder="Number of Guests"
                         />  
