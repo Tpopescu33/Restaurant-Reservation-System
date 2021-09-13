@@ -64,3 +64,16 @@
     border-radius: 20%;
     padding:20px 5px;
 }
+.popup-inner .dismiss1-btn{
+    position: absolute;
+    bottom: 20px;
+    right: 265px;
+    width:200px;
+    color:whitesmoke;
+    font-size:17px;
+    font-weight:600;
+    background-color:rgb(167, 41, 41);
+    border-radius: 20%;
+    padding:20px 15px;
+    margin-left: 15px;
+}

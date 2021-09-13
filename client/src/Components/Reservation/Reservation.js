@@ -5,6 +5,7 @@ import './Reservation.css';
 import Popup1 from "./Popup1";
 import Popup2 from "./Popup2";
 import Popup3 from "./Popup3";
+import Popup4 from "./Popup4";
 
 const Reservation = (props) => {
 
@@ -12,10 +13,11 @@ const Reservation = (props) => {
         isAuth
     } = props;
 
+    const [popup4Trigger, setPopup4Trigger] = useState(false)
     const [popup3Trigger, setPopup3Trigger] = useState(false)
     const [popup2Trigger, setPopup2Trigger] = useState(false)
     const [popup1Trigger, setPopup1Trigger] = useState(false)
-    const [tablesAvailable, setTablesAvailable] = useState('10')
+    const [tablesAvailable, setTablesAvailable] = useState(false)
     const [isHoliday, setIsHoliday] = useState(false);
     const [holidayList, setHolidayList] = useState(["2021-07-04"]);
     const [fullName, setFullName] = useState('');
@@ -51,14 +53,17 @@ const Reservation = (props) => {
     const handleSubmit = (e) =>{
         const isValid = formValidation()
        
-        if(isAuth === false && isValid === true && isHoliday === false){
+        if(isAuth === false && isValid === true && isHoliday === false && tablesAvailable === true){
             setPopup1Trigger(true)
         }
-        if(isAuth === false && isValid === true && isHoliday === true){
+        if(isAuth === false && isValid === true && isHoliday === true && tablesAvailable === true){
             setPopup2Trigger(true)
         }
-        if(isAuth === true && isValid === true && isHoliday === true){
+        if(isAuth === true && isValid === true && isHoliday === true && tablesAvailable === true){
             setPopup3Trigger(true)
+        }
+        if(isValid === true && tablesAvailable === false){
+            setPopup4Trigger(true)
         }
         
     }
@@ -254,6 +259,10 @@ const Reservation = (props) => {
                         <h3>A $10 holding fee will be automatically charged to your Credit Card</h3>
                         <h3>Your fee will be refunded, unless you "No Show"</h3>
                         </Popup3>
+                        <Popup4 trigger={popup4Trigger} setTrigger={setPopup4Trigger}>
+                            <h2>There are no tables available, Please choose another date</h2>
+                            <h2>We are very sorry for the inconvenience</h2>
+                        </Popup4>
                     </div>
             </div>
         </div>
