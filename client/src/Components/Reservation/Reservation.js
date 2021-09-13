@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import { Link } from 'react-router-dom';
+
 
 import './Reservation.css';
+import Popup1 from "./Popup1";
 
 const Reservation = (props) => {
 
@@ -9,8 +10,12 @@ const Reservation = (props) => {
         isAuth
     } = props;
 
+
+
+    const [popup1Trigger, setPopup1Trigger] = useState(false)
     const [tablesAvailable, setTablesAvailable] = useState('10')
-    const [isHoliday, setIsHoliday] = useState("2021-07-04");
+    const [isHoliday, setIsHoliday] = useState(false);
+    const [holidayList, setHolidayList] = useState(["2021-07-04"]);
     const [fullName, setFullName] = useState('');
     const [contactNumber, setContactNumber] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
@@ -43,6 +48,10 @@ const Reservation = (props) => {
 
     const handleSubmit = (e) =>{
         const isValid = formValidation()
+
+        if(isAuth === false && isValid === true){
+            setPopup1Trigger(true)
+        }
         
     }
 
@@ -211,6 +220,11 @@ const Reservation = (props) => {
                     <div className="btn-container">
                         <button date-testid="submitRes" onClick={handleSubmit} className="btn-submit">Submit Reservation</button>
                         <button date-testid="submitRes" onClick={clearForm} className="btn-clear">Clear Form</button>
+                    </div>
+                    <div>
+                        <Popup1 trigger={popup1Trigger} setTrigger={setPopup1Trigger}>
+                            <h1>Would you like to register to earn rewards?</h1>
+                        </Popup1>
                     </div>
             </div>
         </div>
