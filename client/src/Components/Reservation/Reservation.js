@@ -6,6 +6,7 @@ import Popup1 from "./Popup1";
 import Popup2 from "./Popup2";
 import Popup3 from "./Popup3";
 import Popup4 from "./Popup4";
+import TablePicker from "./TablePicker";
 
 const Reservation = (props) => {
 
@@ -13,6 +14,9 @@ const Reservation = (props) => {
         isAuth
     } = props;
 
+    const [table, setTable] = useState('')
+    const [tablePicked, setTablePicked] = useState(false)
+    const [tablePickerTrigger, setTablePickerTrigger] = useState(false)
     const [popup4Trigger, setPopup4Trigger] = useState(false)
     const [popup3Trigger, setPopup3Trigger] = useState(false)
     const [popup2Trigger, setPopup2Trigger] = useState(false)
@@ -32,6 +36,10 @@ const Reservation = (props) => {
     const [numGuestsErr, setNumGuestsErr] = useState('')
     const [resDateErr, setResDateErr] = useState('')
     const [resTimeErr, setResTimeErr] = useState('')
+
+    const pickTable = (e) => {
+        setTablePickerTrigger(true)
+    }
 
     const clearForm = (e) => {
         setFullName('')
@@ -128,10 +136,11 @@ const Reservation = (props) => {
         return isValid;
     }
 
-    console.log(fullName, contactNumber,emailAddress, numGuests, resDate, resTime)
+    console.log(fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table)
 
 
     useEffect(()=> checkHoliday(),[handleSubmit])
+    
 
     return (
         <div>
@@ -243,8 +252,20 @@ const Reservation = (props) => {
                     </div>
 
                     <div className="btn-container">
-                        <button date-testid="submitRes" onClick={handleSubmit} className="btn-submit">Submit Reservation</button>
-                        <button date-testid="submitRes" onClick={clearForm} className="btn-clear">Clear Form</button>
+
+                        {(tablePicked===true)? (
+                            <div>
+                            <button date-testid="submitRes" onClick={handleSubmit} className="btn-submit">Submit Reservation</button>
+                            <button date-testid="submitRes" onClick={pickTable} className="btn-submit">Edit Table</button> 
+                            <button date-testid="submitRes" onClick={clearForm} className="btn-clear">Clear Form</button>
+                            </div>):(
+                            <div>
+                            <button date-testid="submitRes" onClick={pickTable} className="btn-submit">Pick a Table</button> 
+                            <button date-testid="submitRes" onClick={clearForm} className="btn-clear">Clear Form</button>  
+                            </div> 
+                        )}
+                        
+                        
                     </div>
                     <div>
                         <Popup1 trigger={popup1Trigger} setTrigger={setPopup1Trigger}>
@@ -264,6 +285,10 @@ const Reservation = (props) => {
                             <h2>There are no tables available, Please choose another date</h2>
                             <h2>We are very sorry for the inconvenience</h2>
                         </Popup4>
+                        <TablePicker trigger={tablePickerTrigger} setTrigger={setTablePickerTrigger} setTablePicked={setTablePicked} setTable={setTable}>
+                            <h1>Please pick a table</h1>
+                        </TablePicker>
+
                     </div>
             </div>
         </div>
