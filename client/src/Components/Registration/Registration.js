@@ -1,9 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import './Registration.css';
 
 
 const Registration = () => {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmedPassword, setCPassword] = useState("");
+
+    
+
+    const submitForm = async e  => {
+        e.preventDefault();
+        if (confirmedPassword !== password){
+            alert("Confirm password not match");
+        } else{
+            try{                                
+                const body = {name, email, password};
+                const response = await fetch("http://localhost:5000/Registration",{
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(body)
+                });
+                const jsonData = await response.json();
+                if (jsonData === "existed email"){
+                    alert("The email has been used. Please choose another one");
+                    window.location = "/Registration";
+                }
+                if (jsonData === "user registered"){
+                    window.location = "/";
+                }
+            } catch (err) {
+                console.error(err.message);
+            }
+        }
+        
+    }
 
 
     return (
@@ -17,27 +50,35 @@ const Registration = () => {
             <body>
             <div class="register-page">
                 <h2 class="center">New Member</h2>
-                <div class="center">
-                    <form class = "register-form">
-                        <div class = "register-form-user">
-                            <input type="text" class="form-control" name="email" placeholder="Email" required="required" 
-                            />
+                
+                    <form class = "register-form" onSubmit={submitForm}>
+                        <div class="register-form-group">
+                            <label id="name-label" for="name">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required
+                            value={name} onChange={e => setName(e.target.value)}/>
                         </div>
-                        <div class = "register-form-password">
-                            <input type="password" class="form-control" id= "password" name="password" placeholder="Input Password" required="required"
-                            /> 
+                        <div class = "register-form-group">
+                            <label id="email-label" for="email">Email</label>
+                            <input type="text" class="form-control" name="email" placeholder="Enter your email" required="required" 
+                            value={email} onChange={e => setEmail(e.target.value)}/>
+                        </div>
+                        <div class = "register-form-group">
+                            <label id="password-label" for="password">Password</label>
+                            <input type="password" class="form-control" id= "password" name="password" placeholder="Enter your password" required="required"
+                            value={password} onChange={e => setPassword(e.target.value)}/> 
                             
                         </div>
-                        <div class = "register-form-confirm-password">
-                            <input type="password" class="form-control" id= "confirmed-password" name="confirmed-password" placeholder="Confirm Password" required="required"
-                            />
+                        <div class = "register-form-group">
+                            <label id="confirmedPassword-label" for="confirmedPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id= "confirmedPassword" name="confirmedPassword" placeholder="Confirm  your password" required="required"
+                            value={confirmedPassword} onChange={e => setCPassword(e.target.value)}/>
                             
                         </div>
                         <div><button type="submit" class="Sign-Up">Create</button></div>
                     </form>
                     <p class="Registered">Already have an account? <Link to="/login"><u><b>   Login here!   </b></u></Link></p>
                 </div>
-                </div>
+                
                 </body>
             </html>
         </div>
