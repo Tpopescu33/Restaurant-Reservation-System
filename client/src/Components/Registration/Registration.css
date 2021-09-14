@@ -1,29 +1,59 @@
-body {
-    text-align: center;
-}
-form {
-    border: 1px solid #f1f1f1;
-    width: 60%;
-    display: inline-block;
+:root {
+  --gradientColor: linear-gradient(90deg, #ffcccc, #ccffff);
 }
 
-input[type=text], input[type=password] {
-  width: 50%;
-  padding: 12px 20px;
-  margin: 8px 0;
+.register-page {
+  width: 100%;
+  margin: -15rem auto 0 auto;
+}
+
+p {
+  text-align: center;
+}
+
+#title {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+form {
+    background: var(--gradientColor);
+    width: 60%;
+    display: block;
+    padding: 2.5rem 0.625rem;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+.register-form-group {
+  margin: 0 auto 1.25rem auto;
+  padding: 0.25rem;
+  display: block;
+}
+
+.form-control {
+  
   display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+  width: 95%;
+  height: 2.375rem;
+  padding: 0.375rem 0.75rem;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
 }
 
 button {
   background-color: #04AA6D;
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+  padding: 1rem 0.75rem;
+  margin: auto;
   border: none;
   cursor: pointer;
-  width: 30%;
+  width: 50%;
+  display: block;
 }
 
 button:hover {
@@ -31,15 +61,3 @@ button:hover {
 }
 
 
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-}

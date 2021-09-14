@@ -55,9 +55,9 @@ const Registration = () => {
                 
                 <title> Tasty - Register</title>                
             </head>            
-            <body>
+
             <div class="register-page">
-                <h2 class="center">New Member</h2>
+                <h2 id="title">New Member</h2>
                 
                     <form class = "register-form" onSubmit={submitForm}>
                         <div class="register-form-group">
@@ -89,7 +89,7 @@ const Registration = () => {
                     <p class="Registered">Already have an account? <Link to="/login"><u><b>   Login here!   </b></u></Link></p>
                 </div>
                 
-                </body>
+
             </html>
         </div>
     )
