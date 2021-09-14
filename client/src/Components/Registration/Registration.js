@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import validator from 'validator'
 import './Registration.css';
 
 
 const Registration = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState('');
     const [password, setPassword] = useState("");
     const [confirmedPassword, setCPassword] = useState("");
 
@@ -13,6 +15,12 @@ const Registration = () => {
 
     const submitForm = async e  => {
         e.preventDefault();
+        if (validator.isEmail(email)) {
+            setEmailError('');            
+        } else {
+            setEmailError('Not Valid Email');
+        }
+
         if (confirmedPassword !== password){
             alert("Confirm password not match");
         } else{
@@ -60,7 +68,9 @@ const Registration = () => {
                         <div class = "register-form-group">
                             <label id="email-label" for="email">Email</label>
                             <input type="text" class="form-control" name="email" placeholder="Enter your email" required="required" 
-                            value={email} onChange={e => setEmail(e.target.value)}/>
+                            value={email} onChange={e => setEmail(e.target.value)}/> <span style={{
+                                fontWeight: 'bold', color: 'red'
+                            }}>{emailError}</span>
                         </div>
                         <div class = "register-form-group">
                             <label id="password-label" for="password">Password</label>
