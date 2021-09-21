@@ -5,8 +5,10 @@ import NavBar from './Components/Navbar/NavBar'
 import Login from './Components/Login/Login'
 import Registration from './Components/Registration/Registration'
 import Reservation from './Components/Reservation/Reservation'
+import Profile from './Components/Profile/Profile';
 import Footer from './Components/Footer/Footer'
 import './App.css';
+
 
 function App() {
 
@@ -31,6 +33,9 @@ function App() {
             </div>
             <div className='container'>
               <Route exact path="/Reservation" component={Reservation} />
+            </div>
+            <div className='container'>
+              <Route exact path="/Profile" component={Profile} />
             </div>
             <Footer />
         </Router>
