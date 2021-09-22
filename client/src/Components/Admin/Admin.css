@@ -1,0 +1,43 @@
+.title-1 {
+    position: fixed;
+    margin-top: 0;
+    width: 99%;
+    padding-bottom: 20px;
+    background-color: darkgrey;
+  }
+  
+  .col-100 {
+      display: flex;
+      width: 100%;
+      top: 0;
+      height: 1000px;
+      background-color: darkgrey;
+  }
+  
+  .col-15 {
+      display: flex;
+      width: 15%;
+      margin-top: 100px;
+      background-color: lightblue;
+  
+  }
+  
+  .col-37 {
+      display: flex;
+      width: 42.5%;
+      margin-top: 100px;
+      background-color: skyblue;
+  }
+  
+  .col-372 {
+      display: flex;
+      width: 42.5%;
+      margin-top: 100px;
+      background-color: steelblue ;
+  }
+  
+  
+  span {
+    position: fixed;
+    
+  }
