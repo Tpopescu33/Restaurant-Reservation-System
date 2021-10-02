@@ -12,7 +12,7 @@ import './App.css';
 
 function App() {
 
-  const [isAuth, setIsAuth] = useState(false);  
+  const [isAuth, setIsAuth] = useState(true);  
 
   return (
     <div className="App">
@@ -35,12 +35,7 @@ function App() {
           </Route>
           
             </div>
-            <div className='container'>
-              <Route exact path="/Registration" component={Registration} />
-            </div>
-            <div className='container'>
-              <Route exact path="/Reservation" component={Reservation} />
-            </div>
+           
             <div className='container'>
               <Route exact path="/Profile" component={Profile} />
             </div>
