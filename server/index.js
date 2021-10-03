@@ -6,16 +6,17 @@ const mysql = require('mysql');
 
 const db = mysql.createConnection({
     user: 'root',
-    host: 'localhost',
+    host: '127.0.0.1',
     password: 'password',
-    database: 'resturant-reservation-system'
+    port: 3306,
+    database: 'sys'
 })
 
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
 
-
+  db.query("INSERT INTO users (userID, test) VALUES (?,?)", ["1", "test"])
 
 
 app.listen(PORT, () => {
