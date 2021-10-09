@@ -14,8 +14,8 @@ const Reservation = (props) => {
         isAuth
     } = props;
 
-    const [table, setTable] = useState('')
-    const [tablePicked, setTablePicked] = useState(true)
+    const [table, setTable] = useState('please pick a table')
+    const [tablePicked, setTablePicked] = useState(false)
     const [tablePickerTrigger, setTablePickerTrigger] = useState(false)
     const [popup4Trigger, setPopup4Trigger] = useState(false)
     const [popup3Trigger, setPopup3Trigger] = useState(false)
@@ -54,7 +54,8 @@ const Reservation = (props) => {
         setNumGuestsErr('')
         setResDateErr('')
         setResTimeErr("")
-        
+        setTablePicked(false)
+        setTable("please pick a table")
     }
     
 
@@ -214,6 +215,11 @@ const Reservation = (props) => {
                             return <div 
                             className = "err-msg">{numGuestsErr[key]}</div>
                     })} 
+
+                        <label>Table # Picked</label>
+                        <h1 className="form3">{table}</h1>
+
+
                          <label>Date:</label>
                          <input
                             className="form3"
@@ -285,7 +291,7 @@ const Reservation = (props) => {
                             <h2>There are no tables available, Please choose another date</h2>
                             <h2>We are very sorry for the inconvenience</h2>
                         </Popup4>
-                        <TablePicker trigger={tablePickerTrigger} setTrigger={setTablePickerTrigger} setTablePicked={setTablePicked} setTable={setTable}>
+                        <TablePicker trigger={tablePickerTrigger} setTrigger={setTablePickerTrigger} setTablePicked={setTablePicked} setTable={setTable} table={table}>
                             <h1>Please pick a table</h1>
                         </TablePicker>
 
