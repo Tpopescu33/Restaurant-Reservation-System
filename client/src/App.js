@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom"
 import Home from './Components/Home/Home'
 import NavBar from './Components/Navbar/NavBar'
 import Login from './Components/Login/Login'
+import Admin from './Components/Admin/Admin';
 import Registration from './Components/Registration/Registration'
 import Reservation from './Components/Reservation/Reservation'
 import Profile from './Components/Profile/Profile';
@@ -26,6 +27,10 @@ function App() {
 
           <Route path="/login">
              <Login isAuth={isAuth} setIsAuth={setIsAuth}/>
+          </Route>
+
+          <Route path="/Admin">
+             <Admin isAuth={isAuth} setIsAuth={setIsAuth}/>
           </Route>
             
           <Route exact path="/Registration" component={Registration} />
