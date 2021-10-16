@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-
+import Axios from 'axios';
 
 import './Reservation.css';
 import Popup1 from "./Popup1";
@@ -64,6 +64,19 @@ const Reservation = (props) => {
        
         if(isAuth === false && isValid === true && isHoliday === false && tablesAvailable === true){
             setPopup1Trigger(true)
+
+           Axios.post('http://localhost:5000/MakeReservation', {
+                fullName: fullName,
+                contactNumber: contactNumber,
+                emailAddress: emailAddress, 
+                numGuests: numGuests, 
+                resDate: resDate, 
+                resTime: resTime,  
+                table: table
+
+            }).then(() => {
+                console.log("sent")
+            }) 
         }
         if(isAuth === false && isValid === true && isHoliday === true && tablesAvailable === true){
             setPopup2Trigger(true)
