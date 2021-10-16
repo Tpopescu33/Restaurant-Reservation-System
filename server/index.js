@@ -2,9 +2,11 @@ const express = require("express");
 const PORT = process.env.PORT || 5000;
 const app = express();
 const mysql = require('mysql');
+const cors = require('cors');
 /*const bcrypt = require('bcrypt');*/
 const bodyParser = require('body-parser');
 app.use(express.json());
+app.use(cors());
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
@@ -63,12 +65,13 @@ app.post("/login", async(req,res) => {
   const {password} = req.body;
   try{
       console.log("helo");
-      const signIn = db.query("SELECT * FROM Users WHERE email = $1 AND password= $2", [email, password]);
-      console.log(signIn.rows);
+      const signIn = db.query("SELECT * FROM `users` WHERE `email` = ? AND `password`= ?", [email, password]);
+      console.log(signIn);
       if(signIn.rows.length === 0){
           console.log("Invalid Credentials");
           return res.status(401).json("Invalid Credentials");
       }
+
       /*const salt = await bcrypt.genSalt(10);
       const bcryptPassword = await bcrypt.hash(password, salt);
       console.log(bcryptPassword);
