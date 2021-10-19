@@ -10,12 +10,12 @@ const Profile = () => {
     const [emailError, setEmailError] = useState('');
     const [point, setEarnedPoint] = useState([]);
    
-    const token = "a"; //this token need to retrieve from the sign in. This token is generated and shared for each page once user logging in 
+    
     
 
     const getAddress = async e => {
         try {
-            const response = await fetch(`http://localhost:5000/${token}`);
+            const response = await fetch(`http://localhost:5000/Profile`);
             const jsonData = await response.json();
             getAddress(jsonData);
         } catch (err) {
@@ -29,7 +29,7 @@ const Profile = () => {
 
     const getEmail = async e => {
         try {
-            const response = await fetch(`http://localhost:5000/${token}`);
+            const response = await fetch(`http://localhost:5000/Profile`);
             const jsonData = await response.json();
             getEmail(jsonData);
         } catch (err) {
@@ -43,7 +43,7 @@ const Profile = () => {
 
     const getName = async e => {
         try {
-            const response = await fetch(`http://localhost:5000/${token}`);
+            const response = await fetch(`http://localhost:5000/Profile`);
             const jsonData = await response.json();
             getName(jsonData);
         } catch (err) {
@@ -57,7 +57,7 @@ const Profile = () => {
 
     const getPoint = async e => {
         try {
-            const response = await fetch(`http://localhost:5000/${token}`);
+            const response = await fetch(`http://localhost:5000/Profile`);
             const jsonData = await response.json();
             setEarnedPoint(jsonData);
         } catch (err) {
@@ -79,7 +79,7 @@ const Profile = () => {
                 setEmailError('Not Valid Email');
             }                                
             const body ={address, name, email};
-            const response = await fetch(`http://localhost:5000/Profile/${token}`,{
+            const response = await fetch(`http://localhost:5000/Profile/Profile`,{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)

@@ -17,8 +17,9 @@ const Login = () => {
                 body: JSON.stringify(body)
             });
             const jsonData = await response.json();
+            console.log(jsonData);
             if (jsonData === "customer"){
-                window.location = "/Home";
+                window.location = "/Profile";
             }
             else if (jsonData === "admin"){
                 window.location = "/Admin";
