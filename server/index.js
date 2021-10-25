@@ -87,6 +87,23 @@ app.post("/login", async (req, res) => {
   }
 });
 
+
+app.get('/Admin', async(req,res) => {
+  
+  
+  try{        
+      db.query("SELECT userIDs, name, email, password FROM users", 
+      (_err, rows, fields) => {
+        return res.json(rows);
+
+      } );
+      
+      
+  }catch(err){
+      console.log(err.message);
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

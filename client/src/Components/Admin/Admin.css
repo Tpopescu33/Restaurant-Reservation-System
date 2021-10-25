@@ -19,14 +19,33 @@
       width: 15%;
       margin-top: 100px;
       background-color: lightblue;
+
   
   }
+
+  .col-15-display {
+      display: inline-block;
+      position: fixed;
+      margin-top: 20px;
+  }
   
+  .panel-body {
+      margin-bottom: 10px;
+  }
   .col-37 {
       display: flex;
       width: 42.5%;
       margin-top: 100px;
       background-color: skyblue;
+  }
+
+  .table-1{
+    margin-top: 20px;
+    width: fit-content;
+    height: 100px;
+    margin-bottom: 100px;
+    text-align: center;
+
   }
   
   .col-372 {
