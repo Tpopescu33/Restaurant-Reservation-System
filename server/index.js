@@ -58,15 +58,15 @@ app.post("/login", async (req, res) => {
   try {
     
     db.query(
-      "SELECT role FROM users WHERE email = ? AND password= ?",
+      "SELECT userIDs, role FROM users WHERE email = ? AND password= ?",
       [email, password],
       (_err, rows, fields) => {
-        console.log(rows[0].role);
+        console.log(rows[0]);
         if (rows.length === 0) {
           console.log("Invalid Credentials");
           return res.json("Invalid Credentials");
         } else {
-          return res.json(rows[0].role);
+          return res.json(rows[0]);
         }
       }
     );
@@ -103,6 +103,36 @@ app.get('/Admin', async(req,res) => {
       console.log(err.message);
   }
 });
+
+app.get('/Profile-info/:id', async(req,res) => {
+
+  try {
+    var id = req.params.id;
+    db.query("SELECT address, name, email FROM users WHERE userIDs = ?",
+    id,
+    (err, rows, fields) => {
+      return res.json(rows[0]);
+    } );
+  } catch (err) {
+    console.log(err.message)
+  }
+})
+
+app.post('/Profile-edit', async(req, res) => {
+  try {
+    const { name } = req.body;
+    const { email } = req.body;
+    const { id } = req.body;
+    const { address } = req.body;
+    db.query("UPDATE users SET name=?, email=?, address=? WHERE userIDs=?",
+    [name, email, address,id]);
+    console.log("1");
+    res.json("updated");
+  
+  } catch (err) {
+    console.log(err.message);
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

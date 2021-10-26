@@ -18,10 +18,11 @@ const Login = () => {
             });
             const jsonData = await response.json();
             console.log(jsonData);
-            if (jsonData === "customer"){
+            if (jsonData.role === "customer"){
+                window.localStorage.setItem("ID", JSON.stringify(jsonData.userIDs));
                 window.location = "/Profile";
             }
-            else if (jsonData === "admin"){
+            else if (jsonData.role === "admin"){
                 window.location = "/Admin";
             }
             else {
