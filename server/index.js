@@ -104,6 +104,46 @@ app.get('/Admin', async(req,res) => {
   }
 });
 
+app.post('/Admin-searchByName', async(req,res) =>{
+  const {searchName} = req.body;
+  console.log(searchName);
+  try {
+    db.query("SELECT userIDs, name, email, password FROM users WHERE name=? ",
+    searchName,
+    (_err, rows, fields) => {
+      return res.json(rows);
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
+})
+
+app.post('/Admin-searchByTime', async(req,res) =>{
+  const {searchTime} = req.body;
+  console.log(searchTime);
+  try {
+    db.query("SELECT userIDs, name, email, password FROM users WHERE time=? ",
+    searchTime,
+    (_err, rows, fields) => {
+      return res.json(rows);
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
+})
+
+app.post('/Admin-cancel', async(req,res) => {
+  try {
+    const {id} = req.body;
+    console.log(id);
+    db.query("DELETE FROM users WHERE userIDs=?", id, (_err, rows, fields) => {
+      return res.json("deleted");
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
+})
+
 app.get('/Profile-info/:id', async(req,res) => {
 
   try {
