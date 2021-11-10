@@ -65,7 +65,7 @@ const Reservation = (props) => {
         if(isAuth === false && isValid === true && isHoliday === false && tablesAvailable === true){
             setPopup1Trigger(true)
 
-           Axios.post('http://localhost:5000/MakeReservation', {
+           Axios.post('http://localhost:5001/MakeReservation', {
                 fullName: fullName,
                 contactNumber: contactNumber,
                 emailAddress: emailAddress, 
@@ -304,7 +304,7 @@ const Reservation = (props) => {
                             <h2>There are no tables available, Please choose another date</h2>
                             <h2>We are very sorry for the inconvenience</h2>
                         </Popup4>
-                        <TablePicker trigger={tablePickerTrigger} setTrigger={setTablePickerTrigger} setTablePicked={setTablePicked} setTable={setTable} table={table}>
+                        <TablePicker trigger={tablePickerTrigger} setTrigger={setTablePickerTrigger} setTablePicked={setTablePicked} setTable={setTable} table={table} numGuests={numGuests} setNumGuests={setNumGuests}>
                             <h1>Please pick a table</h1>
                         </TablePicker>
 
