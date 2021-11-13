@@ -16,21 +16,84 @@ const Reservation = (props) => {
         userID
     } = props;
 
-    // const times = [{value: '11:00',
-    //                 text:"11:00"
-    //             },{
-    //                 value: '11:30',
-    //                 text:"11:30"},
-    //                 {value: '12:00',
-    //                 text:"12:00"
-    //             },{
-    //                 value: '12:30',
-    //                 text:"12:30"},
-    //                 {value: '1:00',
-    //                 text:"1:00"
-    //             },{
-    //                 value: '1:30',
-    //                 text:"1:30"}]
+    const times = [{
+                    value: '11:00',
+                    text:"11:00"
+                },{
+                    value: '11:30',
+                    text:"11:30"
+                },
+                    {
+                    value: '12:00',
+                    text:"12:00"
+                },{
+                    value:'12:30',
+                    text: '12:30'
+                    
+                },
+                    {
+                    value: '1:00',
+                    text:"1:00"
+                },{
+                    value: '1:30',
+                    text:"1:30"},
+                    {
+                        value: '2:00',
+                        text:"2:00"
+                    },{
+                        value: '2:30',
+                        text:"2:30"
+                    },
+                        {
+                        value: '3:00',
+                        text:"3:00"
+                    },{
+                        value:'3:30',
+                        text: '3:30'
+                        
+                    },
+                        {
+                        value: '4:00',
+                        text:"4:00"
+                    },{
+                        value: '4:30',
+                        text:"4:30"},
+                        {
+                            value: '5:00',
+                            text:"5:00"
+                        },{
+                            value: '5:30',
+                            text:"5:30"
+                        },
+                            {
+                            value: '6:00',
+                            text:"6:00"
+                        },{
+                            value:'6:30',
+                            text: '6:30'
+                            
+                        },
+                            {
+                            value: '7:00',
+                            text:"7:00"
+                        },{
+                            value: '7:30',
+                            text:"7:30"},
+                            {
+                                value: '8:00',
+                                text:"8:00"
+                            },{
+                                value: '8:30',
+                                text:"8:30"
+                            },
+                                {
+                                value: '9:00',
+                                text:"9:00"
+                            },{
+                                value:'9:30',
+                                text: '9:30'
+                                
+                            }]
 
     const [table, setTable] = useState([''])
     const [tablePicked, setTablePicked] = useState(false)
@@ -56,6 +119,26 @@ const Reservation = (props) => {
     const [resTimeErr, setResTimeErr] = useState('')
     const [reservedTables, setReservedTables] = useState([""])
     const [tempReservedTables, setTempReservedTables] = useState([""])
+    const [tempResTime, setTempResTime] = useState(['']);
+
+    const mapResTime = () => {
+        setResTime('')
+
+        tempResTime.map((val, key)=> {
+            return <div>
+
+                {setResTime(val.text)}
+            </div>
+        })
+    }            
+
+    const handleChange = (e, result) => {
+        
+        setTempResTime(e)
+        
+
+      }
+
 
     const pickTable = (e) => {
         setTablePickerTrigger(true)
@@ -83,7 +166,7 @@ const Reservation = (props) => {
         }).then((response) => {
             
             setTempReservedTables(response.data)
-            mapReservedTables()
+            // mapReservedTables()
             
         }).catch((error)=> {
             console.log(error)
@@ -221,12 +304,18 @@ const Reservation = (props) => {
     }
 
     console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table)
-    console.log(tempReservedTables, reservedTables)
+
+    const testResTable=() => {
+        console.log(reservedTables)
+    }
+    
 
 
     useEffect(()=> checkHoliday(),[handleSubmit])
     useEffect(()=> handleResTime(resTime, resDate),[resTime, resDate])
-
+    useEffect(() => mapResTime(tempResTime), [tempResTime] )
+    useEffect(()=> testResTable(), [reservedTables])
+    useEffect(()=> mapReservedTables(), [tempReservedTables])
     return (
         <div>
             <div className="res-background">
@@ -300,8 +389,8 @@ const Reservation = (props) => {
                             className = "err-msg">{numGuestsErr[key]}</div>
                     })} 
 
-                        <label>Table # Picked</label>
-                        <h1 className="form3">{table}</h1>
+                        {/* <label>Table # Picked</label>
+                        <h1 className="form3">{table}</h1> */}
 
 
                          <label>Date:</label>
@@ -322,23 +411,17 @@ const Reservation = (props) => {
                     })} 
                          <label>Time:</label>
 
-{/* <Select options= {times} onChange={(e) => setResTime(e.target.value)}/> */}
+                    <Select 
+                    className="form4"
+                    placeholder= "Select Time"
+                    value={resTime}
+                    type ="text"
+                    select
+                    labelField= "value"
+                    options= {times} 
+                    onChange={(e) => handleChange(e)}/>
 
-                         <input
-                            className="form3"
-                            id="resTime"
-                            data-testid="testResTime"
-                            required
-                            value={resTime}
-                            onChange={(e) => setResTime(e.target.value)}
-                            type="time"
-                            name="resTime"
-                            placeholder="Time"
-                        /> 
-                        {Object.keys(resTimeErr).map((key)=>{
-                            return <div 
-                            className = "err-msg">{resTimeErr[key]}</div>
-                    })} 
+                      
                         
 
 

@@ -393,8 +393,7 @@ const handleD2 = (e) => {
 const handleActiveD2 = (e) => {
     if (props.numGuests <= 2 ){
         setTable("")
-        console.log(props.numGuests)
-        console.log(guestCounter)
+        
         }
         else {
             setGuestCounter(guestCounter - 2)
@@ -487,9 +486,9 @@ const handleActiveD4 = (e) => {
 const loadInfo = (e) => {
     setTable(props.table)
     setNumGuests(props.numGuests)
-    setReservedTables(table => [...table, props.reservedTables])
-    console.log("guestsprops")
-    console.log(props.numGuests)
+    setReservedTables(props.reservedTables)
+    console.log(table)
+    console.log(numGuests)
     console.log(reservedTables)
 }
    
@@ -513,12 +512,12 @@ const handleDismiss = (e) => {
     clearButtons()
     
 }
-useEffect(() => loadInfo, [])
+useEffect(() => loadInfo, [props.trigger, props.reservedTables, props.table, props.numGuests, reservedTables, table, numGuests])
 
 
 
 
-console.log(activeButtonA1, table)
+
   
 
     return (props.trigger) ? (
