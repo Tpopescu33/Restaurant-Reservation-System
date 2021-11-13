@@ -7,14 +7,32 @@ import Popup2 from "./Popup2";
 import Popup3 from "./Popup3";
 import Popup4 from "./Popup4";
 import TablePicker from "./TablePicker";
+import Select from "react-dropdown-select"
 
 const Reservation = (props) => {
 
     const {
-        isAuth
+        isAuth,
+        userID
     } = props;
 
-    const [table, setTable] = useState('please pick a table')
+    // const times = [{value: '11:00',
+    //                 text:"11:00"
+    //             },{
+    //                 value: '11:30',
+    //                 text:"11:30"},
+    //                 {value: '12:00',
+    //                 text:"12:00"
+    //             },{
+    //                 value: '12:30',
+    //                 text:"12:30"},
+    //                 {value: '1:00',
+    //                 text:"1:00"
+    //             },{
+    //                 value: '1:30',
+    //                 text:"1:30"}]
+
+    const [table, setTable] = useState([''])
     const [tablePicked, setTablePicked] = useState(false)
     const [tablePickerTrigger, setTablePickerTrigger] = useState(false)
     const [popup4Trigger, setPopup4Trigger] = useState(false)
@@ -36,10 +54,41 @@ const Reservation = (props) => {
     const [numGuestsErr, setNumGuestsErr] = useState('')
     const [resDateErr, setResDateErr] = useState('')
     const [resTimeErr, setResTimeErr] = useState('')
+    const [reservedTables, setReservedTables] = useState([""])
+    const [tempReservedTables, setTempReservedTables] = useState([""])
 
     const pickTable = (e) => {
         setTablePickerTrigger(true)
     }
+
+    const mapReservedTables = () => {
+        setReservedTables([])
+
+        tempReservedTables.map((val, key)=> {
+            return <div>
+
+                {setReservedTables(table=> [...table, val.table])}
+            </div>
+        })
+    }
+
+    const handleResTime = (resTime, resDate) => {
+        if (resTime != null && resDate != null) {
+
+        Axios.get(`http://localhost:5001/GetReservedTables`, {
+            params: {
+                resTime: resTime,
+                resDate: resDate
+            }
+        }).then((response) => {
+            
+            setTempReservedTables(response.data)
+            mapReservedTables()
+            
+        }).catch((error)=> {
+            console.log(error)
+        } )
+    }}
 
     const clearForm = (e) => {
         setFullName('')
@@ -61,11 +110,12 @@ const Reservation = (props) => {
 
     const handleSubmit = (e) =>{
         const isValid = formValidation()
-       
-        if(isAuth === false && isValid === true && isHoliday === false && tablesAvailable === true){
-            setPopup1Trigger(true)
+
+        if(isAuth === true && isValid === true && isHoliday === false && tablesAvailable === true){
+            
 
            Axios.post('http://localhost:5001/MakeReservation', {
+                userID: userID,
                 fullName: fullName,
                 contactNumber: contactNumber,
                 emailAddress: emailAddress, 
@@ -76,6 +126,26 @@ const Reservation = (props) => {
 
             }).then(() => {
                 console.log("sent")
+                clearForm()
+            }) 
+        }
+       
+        if(isAuth === false && isValid === true && isHoliday === false && tablesAvailable === true){
+            setPopup1Trigger(true)
+
+           Axios.post('http://localhost:5001/MakeReservation', {
+                userID: userID,
+                fullName: fullName,
+                contactNumber: contactNumber,
+                emailAddress: emailAddress, 
+                numGuests: numGuests, 
+                resDate: resDate, 
+                resTime: resTime,  
+                table: table
+
+            }).then(() => {
+                console.log("sent")
+                clearForm()
             }) 
         }
         if(isAuth === false && isValid === true && isHoliday === true && tablesAvailable === true){
@@ -150,11 +220,12 @@ const Reservation = (props) => {
         return isValid;
     }
 
-    console.log(fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table)
+    console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table)
+    console.log(tempReservedTables, reservedTables)
 
 
     useEffect(()=> checkHoliday(),[handleSubmit])
-    
+    useEffect(()=> handleResTime(resTime, resDate),[resTime, resDate])
 
     return (
         <div>
@@ -250,6 +321,9 @@ const Reservation = (props) => {
                             className = "err-msg">{resDateErr[key]}</div>
                     })} 
                          <label>Time:</label>
+
+{/* <Select options= {times} onChange={(e) => setResTime(e.target.value)}/> */}
+
                          <input
                             className="form3"
                             id="resTime"
@@ -304,7 +378,7 @@ const Reservation = (props) => {
                             <h2>There are no tables available, Please choose another date</h2>
                             <h2>We are very sorry for the inconvenience</h2>
                         </Popup4>
-                        <TablePicker trigger={tablePickerTrigger} setTrigger={setTablePickerTrigger} setTablePicked={setTablePicked} setTable={setTable} table={table} numGuests={numGuests} setNumGuests={setNumGuests}>
+                        <TablePicker trigger={tablePickerTrigger} setTrigger={setTablePickerTrigger} setTablePicked={setTablePicked} setTable={setTable} table={table} numGuests={numGuests} setNumGuests={setNumGuests} setReservedTables={setReservedTables} reservedTables={reservedTables}>
                             <h1>Please pick a table</h1>
                         </TablePicker>
 

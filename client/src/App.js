@@ -13,7 +13,7 @@ import './App.css';
 function App() {
 
   const [isAuth, setIsAuth] = useState(true);  
-
+  const [userID, setUserID] = useState(100000)
   return (
     <div className="App">
      
@@ -31,7 +31,7 @@ function App() {
           <Route exact path="/Registration" component={Registration} />
             
           <Route path="/Reservation">
-             <Reservation isAuth={isAuth} setIsAuth={setIsAuth}/>
+             <Reservation isAuth={isAuth} setIsAuth={setIsAuth} userID={userID} setUserID={setUserID}/>
           </Route>
           
             </div>

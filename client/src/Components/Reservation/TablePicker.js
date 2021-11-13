@@ -10,7 +10,7 @@ function TablePicker(props) {
 
 const [numGuests, setNumGuests] = useState(0)
 const [guestCounter, setGuestCounter] = useState(0)
-const [reservedTables, setReservedTables] = useState(["C2","C1","D3","D4","B1"])
+const [reservedTables, setReservedTables] = useState([])
 const [table, setTable] = useState([""])  
 const [activeButtonA1, setActiveButtonA1] = useState(false)
 const [activeButtonA2, setActiveButtonA2] = useState(false)
@@ -487,8 +487,10 @@ const handleActiveD4 = (e) => {
 const loadInfo = (e) => {
     setTable(props.table)
     setNumGuests(props.numGuests)
+    setReservedTables(table => [...table, props.reservedTables])
     console.log("guestsprops")
     console.log(props.numGuests)
+    console.log(reservedTables)
 }
    
 const handleAccept=(e) =>  {
