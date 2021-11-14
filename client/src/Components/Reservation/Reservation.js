@@ -214,7 +214,7 @@ const Reservation = (props) => {
         }
        
         if(isAuth === false && isValid === true && isHoliday === false && tablesAvailable === true){
-            setPopup1Trigger(true)
+           
 
            Axios.post('http://localhost:5001/MakeReservation', {
                 userID: userID,
@@ -236,6 +236,21 @@ const Reservation = (props) => {
         }
         if(isAuth === true && isValid === true && isHoliday === true && tablesAvailable === true){
             setPopup3Trigger(true)
+            Axios.post('http://localhost:5001/MakeReservation', {
+                userID: userID,
+                fullName: fullName,
+                contactNumber: contactNumber,
+                emailAddress: emailAddress, 
+                numGuests: numGuests, 
+                resDate: resDate, 
+                resTime: resTime,  
+                table: table
+
+            }).then(() => {
+                console.log("sent")
+                clearForm()
+            }) 
+
         }
         if(isValid === true && tablesAvailable === false){
             setPopup4Trigger(true)
@@ -268,7 +283,7 @@ const Reservation = (props) => {
         if(contactNumber === ''){
             contactNumberError.errContactNum = "Contact Number is required";
             isValid = false;
-        } else if(!contactNumber.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/)){
+        } else if(!contactNumber.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/)){
             contactNumberError.errContactNum = "Contact Number is invalid";
             isValid = false;
         }
@@ -308,9 +323,13 @@ const Reservation = (props) => {
     const testResTable=() => {
         console.log(reservedTables)
     }
-    
+    const checkIfUser =()=> {
+        if (isAuth == false) {
+            setPopup1Trigger(true)
+        }
+    }
 
-
+    useEffect(()=> checkIfUser(),[])
     useEffect(()=> checkHoliday(),[handleSubmit])
     useEffect(()=> handleResTime(resTime, resDate),[resTime, resDate])
     useEffect(() => mapResTime(tempResTime), [tempResTime] )
@@ -398,6 +417,8 @@ const Reservation = (props) => {
                             className="form3"
                             id="resDate"
                             data-testid="testResDate"
+                            
+                            
                             required
                             value={resDate}
                             onChange={(e) => setResDate(e.target.value)}
@@ -413,9 +434,11 @@ const Reservation = (props) => {
 
                     <Select 
                     className="form4"
+                    data-testid="testResTime"
                     placeholder= "Select Time"
                     value={resTime}
                     type ="text"
+                    required
                     select
                     labelField= "value"
                     options= {times} 
