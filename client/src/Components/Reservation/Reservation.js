@@ -222,10 +222,9 @@ const Reservation = (props) => {
         setTableString('')
     }
     
+    const handleTableString = () =>{
 
-    const handleSubmit = (e) =>{
-        const isValid = formValidation()
-        
+        setTableString('')
         table.map((val, key)=> {
             return <div>
                 {
@@ -238,6 +237,24 @@ const Reservation = (props) => {
             </div>
         }) 
         console.log("tablestring",tableString)
+    }
+
+
+    const handleSubmit = (e) =>{
+        const isValid = formValidation()
+
+        // table.map((val, key)=> {
+        //     return <div>
+        //         {
+                
+        //             setTableString(table.toString())
+                    
+                
+        //         }
+
+        //     </div>
+        // }) 
+        // console.log("tablestring",tableString)
         if (tableString != ''){
 
         if(isAuth === true && isValid === true && isHoliday === false && tablesAvailable === true){
@@ -390,7 +407,7 @@ const Reservation = (props) => {
     useEffect(()=> testResTable(), [reservedTables])
     useEffect(()=> mapReservedTables(), [tempReservedTables])
     useEffect(()=> checkArray(), [tempReservedTablesArray])
-    
+    useEffect(()=> handleTableString(), [table])
 
 
     return (
