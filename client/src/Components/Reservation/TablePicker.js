@@ -44,13 +44,7 @@ const clearButtons = () => {
 }
 
 const handleA1 = (e) => {
-    if (props.numGuests <= 8 ){
-    clearButtons()
-    setTable("A1")
-    console.log(props.numGuests)
-    console.log(guestCounter)
-    setActiveButtonA1(true)
-    } else if (guestCounter < props.numGuests){
+   if (guestCounter < props.numGuests){
         setGuestCounter(guestCounter + 8)
         console.log(props.numGuests)
         console.log(guestCounter)
@@ -65,12 +59,7 @@ const handleA1 = (e) => {
 }
 
 const handleActiveA1 = (e) => {
-    if (props.numGuests <= 8 ){
-    setTable([])
-    console.log(props.numGuests)
-    console.log(guestCounter)
-    }
-    else {
+  
         setGuestCounter(guestCounter - 8)
         var value = "A1"
         var index = table.indexOf(value)
@@ -80,17 +69,13 @@ const handleActiveA1 = (e) => {
         setTable(table => (table.filter((_, i) => i !== index)))
         console.log(table)
    
-        }    
+           
         setActiveButtonA1(false)
     
 }
 
 const handleA2 = (e) => {
-    if (props.numGuests <= 8 ){
-        clearButtons()
-        setTable("A2")
-        setActiveButtonA2(true)
-        } else if (guestCounter < props.numGuests){
+   if (guestCounter < props.numGuests){
             setGuestCounter(guestCounter + 8)
             setTable(table => [...table, "A2"])
             console.log(guestCounter)
@@ -103,26 +88,19 @@ const handleA2 = (e) => {
 }
 
 const handleActiveA2 = (e) => {
-    if (props.numGuests <= 8 ){
-        setTable([])
-        }
-        else{
+    
             setGuestCounter(guestCounter - 8)
             var value = "A2"
             var index = table.indexOf(value)
             console.log(index)
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
-        } 
+         
     setActiveButtonA2(false)
 }
 
 const handleB1 = (e) => {
-    if (props.numGuests <= 6 ){
-        clearButtons()
-        setTable("B1")
-        setActiveButtonB1(true)
-        } else if (guestCounter < props.numGuests) {
+    if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 6)
             setTable(table => [...table, "B1"])
             console.log(guestCounter)
@@ -134,12 +112,7 @@ const handleB1 = (e) => {
 }
 
 const handleActiveB1 = (e) => {
-    if (props.numGuests <= 6 ){
-        setTable([])
-        console.log(props.numGuests)
-        console.log(guestCounter)
-        }
-        else {
+    
             setGuestCounter(guestCounter - 6)
             var value = "B1"
             var index = table.indexOf(value)
@@ -149,17 +122,13 @@ const handleActiveB1 = (e) => {
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
-            }    
+                
             setActiveButtonB1(false)
         
     }
 
 const handleB2 = (e) => {
-    if (props.numGuests <= 6 ){
-        clearButtons()
-        setTable("B2")
-        setActiveButtonB2(true)
-        } else if (guestCounter < props.numGuests) {
+   if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 6)
             setTable(table => [...table, "B2"])
             console.log(guestCounter)
@@ -171,12 +140,7 @@ const handleB2 = (e) => {
 }
 
 const handleActiveB2 = (e) => {
-    if (props.numGuests <= 6 ){
-        setTable([])
-        console.log(props.numGuests)
-        console.log(guestCounter)
-        }
-        else {
+    
             setGuestCounter(guestCounter - 6)
             var value = "B2"
             var index = table.indexOf(value)
@@ -184,17 +148,13 @@ const handleActiveB2 = (e) => {
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
-            }    
+                
             setActiveButtonB2(false)
         
     }
 
 const handleC1 = (e) => {
-    if (props.numGuests <= 4 ){
-        clearButtons()
-        setTable("C1")
-        setActiveButtonC1(true)
-        } else if (guestCounter < props.numGuests) {
+    if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 4)
             setTable(table => [...table, "C1"])
             console.log(guestCounter)
@@ -206,12 +166,7 @@ const handleC1 = (e) => {
 }
 
 const handleActiveC1 = (e) => {
-    if (props.numGuests <= 4 ){
-        setTable("")
-        console.log(props.numGuests)
-        console.log(guestCounter)
-        }
-        else {
+    
             setGuestCounter(guestCounter - 4)
             var value = "C1"
             var index = table.indexOf(value)
@@ -221,17 +176,13 @@ const handleActiveC1 = (e) => {
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
-            }    
+              
             setActiveButtonC1(false)
         
     }
 
 const handleC2 = (e) => {
-    if (props.numGuests <= 4 ){
-        clearButtons()
-        setTable("C2")
-        setActiveButtonC2(true)
-        } else if (guestCounter < props.numGuests) {
+    if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 4)
             setTable(table => [...table, "C2"])
             console.log(guestCounter)
@@ -243,12 +194,7 @@ const handleC2 = (e) => {
 }
 
 const handleActiveC2 = (e) => {
-    if (props.numGuests <= 4 ){
-        setTable([])
-        console.log(props.numGuests)
-        console.log(guestCounter)
-        }
-        else {
+    
             setGuestCounter(guestCounter - 4)
             var value = "C2"
             var index = table.indexOf(value)
@@ -258,16 +204,12 @@ const handleActiveC2 = (e) => {
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
-            }    
+               
             setActiveButtonC2(false)
         
     }
 const handleC3 = (e) => {
-    if (props.numGuests <= 4 ){
-        clearButtons()
-        setTable("C3")
-        setActiveButtonC3(true)
-        } else if (guestCounter < props.numGuests) {
+   if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 4)
             setTable(table => [...table, "C3"])
             console.log(guestCounter)
@@ -279,12 +221,7 @@ const handleC3 = (e) => {
 }
 
 const handleActiveC3 = (e) => {
-    if (props.numGuests <= 4 ){
-        setTable([])
-        console.log(props.numGuests)
-        console.log(guestCounter)
-        }
-        else {
+   
             setGuestCounter(guestCounter - 4)
             var value = "C3"
             var index = table.indexOf(value)
@@ -294,17 +231,14 @@ const handleActiveC3 = (e) => {
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
-            }    
+                
             setActiveButtonC3(false)
         
     }
 
 const handleC4 = (e) => {
-    if (props.numGuests <= 4 ){
-        clearButtons()
-        setTable("C4")
-        setActiveButtonC4(true)
-        } else if (guestCounter < props.numGuests) {
+   
+        if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 4)
             setTable(table => [...table, "C4"])
             console.log(guestCounter)
@@ -316,12 +250,7 @@ const handleC4 = (e) => {
 }
 
 const handleActiveC4 = (e) => {
-    if (props.numGuests <= 4 ){
-        setTable([])
-        console.log(props.numGuests)
-        console.log(guestCounter)
-        }
-        else {
+   
             setGuestCounter(guestCounter - 4)
             var value = "C4"
             var index = table.indexOf(value)
@@ -331,16 +260,11 @@ const handleActiveC4 = (e) => {
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
-            }    
             setActiveButtonC4(false)
         
-    }
+   }
 const handleD1 = (e) => {
-    if (props.numGuests <= 2 ){
-        clearButtons()
-        setTable("D1")
-        setActiveButtonD1(true)
-        } else if (guestCounter < props.numGuests) {
+   if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 2)
             setTable([...table, "D1"])
             console.log(guestCounter)
@@ -352,12 +276,7 @@ const handleD1 = (e) => {
 }
 
 const handleActiveD1 = (e) => {
-    if (props.numGuests <= 2 ){
-        setTable([])
-        console.log(props.numGuests)
-        console.log(guestCounter)
-        }
-        else {
+   
             setGuestCounter(guestCounter - 2)
             var value = "D1"
             var index = table.indexOf(value)
@@ -367,17 +286,13 @@ const handleActiveD1 = (e) => {
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
-            }    
+            
             setActiveButtonD1(false)
         
     }
 
 const handleD2 = (e) => {
-    if (props.numGuests <= 2 ){
-        clearButtons()
-        setTable("D2")
-        setActiveButtonD2(true)
-        } else if (guestCounter < props.numGuests) {
+    if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 2)
             setTable([...table, "D2"])
             console.log(guestCounter)
@@ -389,11 +304,7 @@ const handleD2 = (e) => {
 }
 
 const handleActiveD2 = (e) => {
-    if (props.numGuests <= 2 ){
-        setTable([])
-        
-        }
-        else {
+    
             setGuestCounter(guestCounter - 2)
             var value = "D2"
             var index = table.indexOf(value)
@@ -403,16 +314,12 @@ const handleActiveD2 = (e) => {
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
-            }    
+                
             setActiveButtonD2(false)
         
     }
 const handleD3 = (e) => {
-    if (props.numGuests <= 2 ){
-        clearButtons()
-        setTable("D3")
-        setActiveButtonD3(true)
-        } else if (guestCounter < props.numGuests) {
+    if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 2)
             setTable(table => [...table, "D3"])
             console.log(guestCounter)
@@ -424,12 +331,7 @@ const handleD3 = (e) => {
 }
 
 const handleActiveD3 = (e) => {
-    if (props.numGuests <= 2 ){
-        setTable([])
-        console.log(props.numGuests)
-        console.log(guestCounter)
-        }
-        else {
+   
             setGuestCounter(guestCounter - 2)
             var value = "D3"
             var index = table.indexOf(value)
@@ -439,17 +341,13 @@ const handleActiveD3 = (e) => {
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
-            }    
+                
             setActiveButtonD3(false)
         
     }
 
 const handleD4 = (e) => {
-    if (props.numGuests <= 2 ){
-        clearButtons()
-        setTable("D4")
-        setActiveButtonD4(true)
-        } else if (guestCounter < props.numGuests) {
+    if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 2)
             setTable(table => [...table, "D4"])
             console.log(guestCounter)
@@ -461,12 +359,7 @@ const handleD4 = (e) => {
 }
 
 const handleActiveD4 = (e) => {
-    if (props.numGuests <= 2 ){
-        setTable([])
-        console.log(props.numGuests)
-        console.log(guestCounter)
-        }
-        else {
+    
             setGuestCounter(guestCounter - 2)
             var value = "D4"
             var index = table.indexOf(value)
@@ -476,7 +369,7 @@ const handleActiveD4 = (e) => {
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
-            }    
+                
             setActiveButtonD4(false)
         
     }
@@ -507,6 +400,7 @@ const handleAccept=(e) =>  {
 const handleDismiss = (e) => {
     props.setTrigger(false)
     props.setTable([])
+    setGuestCounter(0)
     setTable([])
     props.setTablePicked(false)
     clearButtons()
@@ -527,7 +421,7 @@ useEffect(() => loadInfo, [props.trigger])
                 <button className="table-accept-btn" onClick={handleAccept}>Accept</button>
 
                 
-                {(activeButtonA1===true && !reservedTables.contains("A1"))? 
+                {(activeButtonA1===true && !reservedTables.includes("A1"))? 
                 (<button className="table-a1-btn-active" onClick={handleActiveA1}>8 Persons</button>) : (!reservedTables.includes("A1"))?
                 (<button className="table-a1-btn" onClick={handleA1}>8 Persons</button>) : 
                 (<button className="table-a1-btn-reserved">8 Persons</button>)}
@@ -567,7 +461,7 @@ useEffect(() => loadInfo, [props.trigger])
                 (<button className="table-c4-btn" onClick={handleC4}>4 Persons</button>) : 
                 (<button className="table-c4-btn-reserved">4 Persons</button>)} 
 
-                {(activeButtonD1===true && !reservedTables.contains("D1"))? 
+                {(activeButtonD1===true && !reservedTables.includes("D1"))? 
                 (<button className="table-d1-btn-active" onClick={handleActiveD1}>2 Persons</button>) : (!reservedTables.includes("D1"))?
                 (<button className="table-d1-btn" onClick={handleD1}>2 Persons</button>) : 
                 (<button className="table-d1-btn-reserved">2 Persons</button>)}
@@ -582,7 +476,7 @@ useEffect(() => loadInfo, [props.trigger])
                 (<button className="table-d3-btn" onClick={handleD3}>2 Persons</button>) : 
                 (<button className="table-d3-btn-reserved">2 Persons</button>)}
 
-                {(activeButtonD4===true && !reservedTables.contains("D4"))? 
+                {(activeButtonD4===true && !reservedTables.includes("D4"))? 
                 (<button className="table-d4-btn-active" onClick={handleActiveD4}>2 Persons</button>) : (!reservedTables.includes("D4"))?
                 (<button className="table-d4-btn" onClick={handleD4}>2 Persons</button>) : 
                 (<button className="table-d4-btn-reserved">2 Persons</button>)} 
