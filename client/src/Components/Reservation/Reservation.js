@@ -95,7 +95,7 @@ const Reservation = (props) => {
                                 
                             }]
 
-    const [table, setTable] = useState([''])
+    const [table, setTable] = useState([])
     const [tablePicked, setTablePicked] = useState(false)
     const [tablePickerTrigger, setTablePickerTrigger] = useState(false)
     const [popup4Trigger, setPopup4Trigger] = useState(false)

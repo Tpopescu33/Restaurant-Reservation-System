@@ -11,7 +11,7 @@ function TablePicker(props) {
 const [numGuests, setNumGuests] = useState(0)
 const [guestCounter, setGuestCounter] = useState(0)
 const [reservedTables, setReservedTables] = useState([])
-const [table, setTable] = useState([""])  
+const [table, setTable] = useState([])  
 const [activeButtonA1, setActiveButtonA1] = useState(false)
 const [activeButtonA2, setActiveButtonA2] = useState(false)
 const [activeButtonB1, setActiveButtonB1] = useState(false)
@@ -27,7 +27,7 @@ const [activeButtonD4, setActiveButtonD4] = useState(false)
 
 
 const clearButtons = () => {
-    setTable("")
+    setTable([])
     setActiveButtonA1(false)
     setActiveButtonA2(false)
     setActiveButtonB1(false)
@@ -66,7 +66,7 @@ const handleA1 = (e) => {
 
 const handleActiveA1 = (e) => {
     if (props.numGuests <= 8 ){
-    setTable("")
+    setTable([])
     console.log(props.numGuests)
     console.log(guestCounter)
     }
@@ -104,7 +104,7 @@ const handleA2 = (e) => {
 
 const handleActiveA2 = (e) => {
     if (props.numGuests <= 8 ){
-        setTable("please pick a table")
+        setTable([])
         }
         else{
             setGuestCounter(guestCounter - 8)
@@ -135,7 +135,7 @@ const handleB1 = (e) => {
 
 const handleActiveB1 = (e) => {
     if (props.numGuests <= 6 ){
-        setTable("")
+        setTable([])
         console.log(props.numGuests)
         console.log(guestCounter)
         }
@@ -172,7 +172,7 @@ const handleB2 = (e) => {
 
 const handleActiveB2 = (e) => {
     if (props.numGuests <= 6 ){
-        setTable("")
+        setTable([])
         console.log(props.numGuests)
         console.log(guestCounter)
         }
@@ -180,9 +180,7 @@ const handleActiveB2 = (e) => {
             setGuestCounter(guestCounter - 6)
             var value = "B2"
             var index = table.indexOf(value)
-            console.log(props.numGuests)
-            console.log(guestCounter)
-            console.log(index)
+            
             setTable(table => (table.filter((_, i) => i !== index)))
             console.log(table)
        
@@ -246,7 +244,7 @@ const handleC2 = (e) => {
 
 const handleActiveC2 = (e) => {
     if (props.numGuests <= 4 ){
-        setTable("")
+        setTable([])
         console.log(props.numGuests)
         console.log(guestCounter)
         }
@@ -282,7 +280,7 @@ const handleC3 = (e) => {
 
 const handleActiveC3 = (e) => {
     if (props.numGuests <= 4 ){
-        setTable("")
+        setTable([])
         console.log(props.numGuests)
         console.log(guestCounter)
         }
@@ -319,7 +317,7 @@ const handleC4 = (e) => {
 
 const handleActiveC4 = (e) => {
     if (props.numGuests <= 4 ){
-        setTable("")
+        setTable([])
         console.log(props.numGuests)
         console.log(guestCounter)
         }
@@ -344,7 +342,7 @@ const handleD1 = (e) => {
         setActiveButtonD1(true)
         } else if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 2)
-            setTable(table => [...table, "D1"])
+            setTable([...table, "D1"])
             console.log(guestCounter)
             setActiveButtonD1(true)
         } else {
@@ -355,7 +353,7 @@ const handleD1 = (e) => {
 
 const handleActiveD1 = (e) => {
     if (props.numGuests <= 2 ){
-        setTable("")
+        setTable([])
         console.log(props.numGuests)
         console.log(guestCounter)
         }
@@ -381,7 +379,7 @@ const handleD2 = (e) => {
         setActiveButtonD2(true)
         } else if (guestCounter < props.numGuests) {
             setGuestCounter(guestCounter + 2)
-            setTable(table => [...table, "D2"])
+            setTable([...table, "D2"])
             console.log(guestCounter)
             setActiveButtonD2(true)
         } else {
@@ -392,7 +390,7 @@ const handleD2 = (e) => {
 
 const handleActiveD2 = (e) => {
     if (props.numGuests <= 2 ){
-        setTable("")
+        setTable([])
         
         }
         else {
@@ -427,7 +425,7 @@ const handleD3 = (e) => {
 
 const handleActiveD3 = (e) => {
     if (props.numGuests <= 2 ){
-        setTable("")
+        setTable([])
         console.log(props.numGuests)
         console.log(guestCounter)
         }
@@ -464,7 +462,7 @@ const handleD4 = (e) => {
 
 const handleActiveD4 = (e) => {
     if (props.numGuests <= 2 ){
-        setTable("")
+        setTable([])
         console.log(props.numGuests)
         console.log(guestCounter)
         }
@@ -487,16 +485,18 @@ const loadInfo = (e) => {
     setTable(props.table)
     setNumGuests(props.numGuests)
     setReservedTables(props.reservedTables)
-    console.log(table)
-    console.log(numGuests)
-    console.log(reservedTables)
+    console.log("table picked", table)
+    console.log("num guests", numGuests)
+    console.log("reserved tables", reservedTables)
+    console.log("counter", guestCounter)
 }
    
 const handleAccept=(e) =>  {
     props.setTrigger(false)
-    if (table === "please pick a table"){
+    if (table.length === 0){
         props.setTablePicked(false)
         props.setTable(table)
+        
     } else {
         props.setTablePicked(true)
         props.setTable(table)
@@ -506,13 +506,13 @@ const handleAccept=(e) =>  {
 
 const handleDismiss = (e) => {
     props.setTrigger(false)
-    props.setTable("please pick a table")
-    setTable("please pick a table")
+    props.setTable([])
+    setTable([])
     props.setTablePicked(false)
     clearButtons()
     
 }
-useEffect(() => loadInfo, [props.trigger, props.reservedTables, props.table, props.numGuests, reservedTables, table, numGuests])
+useEffect(() => loadInfo, [props.trigger])
 
 
 
