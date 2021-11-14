@@ -25,7 +25,7 @@ function App() {
               <Route exact path="/" component={Home} />
 
           <Route path="/login">
-             <Login isAuth={isAuth} setIsAuth={setIsAuth}/>
+             <Login isAuth={isAuth} setIsAuth={setIsAuth} userID={userID} setUserID={setUserID}/>
           </Route>
             
           <Route exact path="/Registration" component={Registration} />
