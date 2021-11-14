@@ -377,11 +377,19 @@ const handleActiveD4 = (e) => {
 const loadInfo = (e) => {
     setTable(props.table)
     setNumGuests(props.numGuests)
-    setReservedTables(props.reservedTables)
+    
     console.log("table picked", table)
     console.log("num guests", numGuests)
-    console.log("reserved tables", reservedTables)
+    
     console.log("counter", guestCounter)
+}
+
+const loadInfo2 = (e) => {
+   
+    setReservedTables(props.reservedTables)
+    
+    console.log("reserved tables", reservedTables)
+    
 }
    
 const handleAccept=(e) =>  {
@@ -407,7 +415,7 @@ const handleDismiss = (e) => {
     
 }
 useEffect(() => loadInfo, [props.trigger])
-
+useEffect(()=> loadInfo2, [props.trigger, props.reservedTables])
 
 
 
