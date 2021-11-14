@@ -118,8 +118,32 @@ const Reservation = (props) => {
     const [resDateErr, setResDateErr] = useState('')
     const [resTimeErr, setResTimeErr] = useState('')
     const [reservedTables, setReservedTables] = useState([""])
-    const [tempReservedTables, setTempReservedTables] = useState([""])
+    const [tempReservedTables, setTempReservedTables] = useState([''])
     const [tempResTime, setTempResTime] = useState(['']);
+    const [tableString, setTableString] = useState('')
+    const [tempReservedTablesArray, setTempReservedTablesArray] = useState([""])
+
+    const handleArray = () => {
+        setTableString('')
+
+        table.map((val, key)=> {
+            return <div>
+                {
+                
+                    setTableString(table.toString())
+                    
+                
+                }
+
+            </div>
+        })
+
+        console.log(tableString)
+
+        handleSubmit()
+    }
+
+    
 
     const mapResTime = () => {
         setResTime('')
@@ -144,15 +168,24 @@ const Reservation = (props) => {
         setTablePickerTrigger(true)
     }
 
+    const checkArray = ()=> {
+        
+        var tempString = tempReservedTablesArray.toString()
+        var tempArray = tempString.split(',')
+        setReservedTables(tempArray)
+    }
+
     const mapReservedTables = () => {
         setReservedTables([])
+        setTempReservedTablesArray([])
 
         tempReservedTables.map((val, key)=> {
             return <div>
 
-                {setReservedTables(table=> [...table, val.table])}
+                {setTempReservedTablesArray(table=> [...table, val.table])}
             </div>
         })
+        
     }
 
     const handleResTime = (resTime, resDate) => {
@@ -187,7 +220,8 @@ const Reservation = (props) => {
         setResDateErr('')
         setResTimeErr("")
         setTablePicked(false)
-        setTable("please pick a table")
+        setTable([])
+        setTableString('')
     }
     
 
@@ -205,7 +239,7 @@ const Reservation = (props) => {
                 numGuests: numGuests, 
                 resDate: resDate, 
                 resTime: resTime,  
-                table: table
+                table: tableString
 
             }).then(() => {
                 console.log("sent")
@@ -224,7 +258,7 @@ const Reservation = (props) => {
                 numGuests: numGuests, 
                 resDate: resDate, 
                 resTime: resTime,  
-                table: table
+                table: tableString
 
             }).then(() => {
                 console.log("sent")
@@ -244,7 +278,7 @@ const Reservation = (props) => {
                 numGuests: numGuests, 
                 resDate: resDate, 
                 resTime: resTime,  
-                table: table
+                table: tableString
 
             }).then(() => {
                 console.log("sent")
@@ -318,7 +352,7 @@ const Reservation = (props) => {
         return isValid;
     }
 
-    console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table)
+    console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table, tableString, tempReservedTablesArray)
 
     const testResTable=() => {
         console.log(reservedTables)
@@ -335,6 +369,10 @@ const Reservation = (props) => {
     useEffect(() => mapResTime(tempResTime), [tempResTime] )
     useEffect(()=> testResTable(), [reservedTables])
     useEffect(()=> mapReservedTables(), [tempReservedTables])
+    useEffect(()=> checkArray(), [tempReservedTablesArray])
+    
+
+
     return (
         <div>
             <div className="res-background">
@@ -454,7 +492,7 @@ const Reservation = (props) => {
 
                         {(tablePicked===true)? (
                             <div>
-                            <button date-testid="submitRes" onClick={handleSubmit} className="btn-submit">Submit Reservation</button>
+                            <button date-testid="submitRes" onClick={handleArray} className="btn-submit">Submit Reservation</button>
                             <button date-testid="submitRes" onClick={pickTable} className="btn-submit">Edit Table</button> 
                             <button date-testid="submitRes" onClick={clearForm} className="btn-clear">Clear Form</button>
                             </div>):(

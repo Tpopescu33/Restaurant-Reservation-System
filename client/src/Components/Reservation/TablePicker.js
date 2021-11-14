@@ -527,7 +527,7 @@ useEffect(() => loadInfo, [props.trigger])
                 <button className="table-accept-btn" onClick={handleAccept}>Accept</button>
 
                 
-                {(activeButtonA1===true && !reservedTables.includes("A1"))? 
+                {(activeButtonA1===true && !reservedTables.contains("A1"))? 
                 (<button className="table-a1-btn-active" onClick={handleActiveA1}>8 Persons</button>) : (!reservedTables.includes("A1"))?
                 (<button className="table-a1-btn" onClick={handleA1}>8 Persons</button>) : 
                 (<button className="table-a1-btn-reserved">8 Persons</button>)}
@@ -567,7 +567,7 @@ useEffect(() => loadInfo, [props.trigger])
                 (<button className="table-c4-btn" onClick={handleC4}>4 Persons</button>) : 
                 (<button className="table-c4-btn-reserved">4 Persons</button>)} 
 
-                {(activeButtonD1===true && !reservedTables.includes("D1"))? 
+                {(activeButtonD1===true && !reservedTables.contains("D1"))? 
                 (<button className="table-d1-btn-active" onClick={handleActiveD1}>2 Persons</button>) : (!reservedTables.includes("D1"))?
                 (<button className="table-d1-btn" onClick={handleD1}>2 Persons</button>) : 
                 (<button className="table-d1-btn-reserved">2 Persons</button>)}
@@ -582,7 +582,7 @@ useEffect(() => loadInfo, [props.trigger])
                 (<button className="table-d3-btn" onClick={handleD3}>2 Persons</button>) : 
                 (<button className="table-d3-btn-reserved">2 Persons</button>)}
 
-                {(activeButtonD4===true && !reservedTables.includes("D4"))? 
+                {(activeButtonD4===true && !reservedTables.contains("D4"))? 
                 (<button className="table-d4-btn-active" onClick={handleActiveD4}>2 Persons</button>) : (!reservedTables.includes("D4"))?
                 (<button className="table-d4-btn" onClick={handleD4}>2 Persons</button>) : 
                 (<button className="table-d4-btn-reserved">2 Persons</button>)} 
