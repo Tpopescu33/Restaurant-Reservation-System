@@ -123,25 +123,23 @@ const Reservation = (props) => {
     const [tableString, setTableString] = useState('')
     const [tempReservedTablesArray, setTempReservedTablesArray] = useState([""])
 
-    const handleArray = () => {
-        setTableString('')
+    // const handleArray = () => {
+        
 
-        table.map((val, key)=> {
-            return <div>
-                {
+    //     table.map((val, key)=> {
+    //         return <div>
+    //             {
                 
-                    setTableString(table.toString())
+    //                 setTableString(table.toString())
                     
                 
-                }
+    //             }
 
-            </div>
-        })
+    //         </div>
+    //     })
 
-        console.log(tableString)
-
-        handleSubmit()
-    }
+       
+    // }
 
     
 
@@ -227,8 +225,25 @@ const Reservation = (props) => {
 
     const handleSubmit = (e) =>{
         const isValid = formValidation()
+        
+        table.map((val, key)=> {
+            return <div>
+                {
+                
+                    setTableString(table.toString())
+                    
+                
+                }
+
+            </div>
+        }) 
+        console.log("tablestring",tableString)
+        if (tableString != ''){
 
         if(isAuth === true && isValid === true && isHoliday === false && tablesAvailable === true){
+
+
+           
             
 
            Axios.post('http://localhost:5001/MakeReservation', {
@@ -250,6 +265,8 @@ const Reservation = (props) => {
         if(isAuth === false && isValid === true && isHoliday === false && tablesAvailable === true){
            
 
+          
+
            Axios.post('http://localhost:5001/MakeReservation', {
                 userID: userID,
                 fullName: fullName,
@@ -270,6 +287,9 @@ const Reservation = (props) => {
         }
         if(isAuth === true && isValid === true && isHoliday === true && tablesAvailable === true){
             setPopup3Trigger(true)
+
+
+
             Axios.post('http://localhost:5001/MakeReservation', {
                 userID: userID,
                 fullName: fullName,
@@ -289,7 +309,7 @@ const Reservation = (props) => {
         if(isValid === true && tablesAvailable === false){
             setPopup4Trigger(true)
         }
-        
+    } 
     }
 
     const checkHoliday =()=>{
@@ -352,7 +372,7 @@ const Reservation = (props) => {
         return isValid;
     }
 
-    console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table, tableString, tempReservedTablesArray)
+    console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table, tableString)
 
     const testResTable=() => {
         console.log(reservedTables)
@@ -492,7 +512,7 @@ const Reservation = (props) => {
 
                         {(tablePicked===true)? (
                             <div>
-                            <button date-testid="submitRes" onClick={handleArray} className="btn-submit">Submit Reservation</button>
+                            <button date-testid="submitRes" onClick={handleSubmit} className="btn-submit">Submit Reservation</button>
                             <button date-testid="submitRes" onClick={pickTable} className="btn-submit">Edit Table</button> 
                             <button date-testid="submitRes" onClick={clearForm} className="btn-clear">Clear Form</button>
                             </div>):(
