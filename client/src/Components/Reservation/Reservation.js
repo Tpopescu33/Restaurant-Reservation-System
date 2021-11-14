@@ -102,6 +102,7 @@ const Reservation = (props) => {
     const [popup3Trigger, setPopup3Trigger] = useState(false)
     const [popup2Trigger, setPopup2Trigger] = useState(false)
     const [popup1Trigger, setPopup1Trigger] = useState(false)
+    const [popup5Trigger, setPopup5Trigger] = useState(false)
     const [tablesAvailable, setTablesAvailable] = useState(true)
     const [isHoliday, setIsHoliday] = useState(false);
     const [holidayList, setHolidayList] = useState(["2021-07-04"]);
@@ -400,6 +401,14 @@ const Reservation = (props) => {
         }
     }
 
+    const checkGuestNumber = () => {
+        var tempGuests = parseInt(numGuests)
+        if (tempGuests > 16){
+            setPopup5Trigger(true)
+            setNumGuests(0)
+        }
+    }
+
     useEffect(()=> checkIfUser(),[])
     useEffect(()=> checkHoliday(),[handleSubmit])
     useEffect(()=> handleResTime(resTime, resDate),[resTime, resDate])
@@ -408,7 +417,7 @@ const Reservation = (props) => {
     useEffect(()=> mapReservedTables(), [tempReservedTables])
     useEffect(()=> checkArray(), [tempReservedTablesArray])
     useEffect(()=> handleTableString(), [table])
-
+    useEffect(()=> checkGuestNumber(), [numGuests])
 
     return (
         <div>
@@ -557,6 +566,11 @@ const Reservation = (props) => {
                         </Popup3>
                         <Popup4 trigger={popup4Trigger} setTrigger={setPopup4Trigger}>
                             <h2>There are no tables available, Please choose another date</h2>
+                            <h2>We are very sorry for the inconvenience</h2>
+                        </Popup4>
+                        <Popup4 trigger={popup5Trigger} setTrigger={setPopup5Trigger}>
+                            <h2>The max party size is 16</h2>
+                            <h2>If you wish to book a larger party please call the resturant</h2>
                             <h2>We are very sorry for the inconvenience</h2>
                         </Popup4>
                         <TablePicker trigger={tablePickerTrigger} setTrigger={setTablePickerTrigger} setTablePicked={setTablePicked} setTable={setTable} table={table} numGuests={numGuests} setNumGuests={setNumGuests} setReservedTables={setReservedTables} reservedTables={reservedTables}>
