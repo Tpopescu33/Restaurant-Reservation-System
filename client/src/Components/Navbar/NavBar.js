@@ -26,7 +26,7 @@ function NavBar(props) {
                     
                     {(isAuth === true) ? (
                         <div>
-                            <Link to="/Profile" className="nav">Manage Profile</Link>)
+                            <Link to="/Profile" className="nav">Manage Profile</Link>
                             <Link to="/login"><button className="btn-signin" onClick={handleSignOut}>Sign Out</button></Link>
                         </div>
                     ) : (
