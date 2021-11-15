@@ -144,23 +144,17 @@ const Reservation = (props) => {
 
     
 
-    const mapResTime = () => {
-        setResTime('')
+//     const mapResTime = () => {
+//         setResTime('')
+// setResTime(tempResTime)
+//     }            
 
-        tempResTime.map((val, key)=> {
-            return <div>
-
-                {setResTime(val.text)}
-            </div>
-        })
-    }            
-
-    const handleChange = (e, result) => {
+//     const handleChange = (e, result) => {
         
-        setTempResTime(e)
+//         setTempResTime(e)
         
 
-      }
+//       }
 
 
     const pickTable = (e) => {
@@ -412,7 +406,7 @@ const Reservation = (props) => {
     useEffect(()=> checkIfUser(),[])
     useEffect(()=> checkHoliday(),[handleSubmit])
     useEffect(()=> handleResTime(resTime, resDate),[resTime, resDate])
-    useEffect(() => mapResTime(tempResTime), [tempResTime] )
+ //   useEffect(() => mapResTime(tempResTime), [tempResTime] )
     useEffect(()=> testResTable(), [reservedTables])
     useEffect(()=> mapReservedTables(), [tempReservedTables])
     useEffect(()=> checkArray(), [tempReservedTablesArray])
@@ -516,7 +510,7 @@ const Reservation = (props) => {
                     })} 
                          <label>Time:</label>
 
-                    <Select 
+                    {/* <Select 
                     className="form4"
                     data-testid="testResTime"
                     placeholder= "Select Time"
@@ -526,7 +520,39 @@ const Reservation = (props) => {
                     select
                     labelField= "value"
                     options= {times} 
-                    onChange={(e) => handleChange(e)}/>
+                    onChange={(e) => handleChange(e)}/> */}
+
+                <select 
+                className="form4"
+                name="selectList" 
+                id="selectList"
+                type ="text"
+                value={resTime}
+                placeholder= "Select Time"
+                onChange={(e) => setResTime(e.target.value)}>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="1:00">1:00</option>
+                <option value="1:30">1:30</option>
+                <option value="2:00">2:00</option>
+                <option value="2:30">2:30</option>
+                <option value="3:00">3:00</option>
+                <option value="3:30">3:30</option>
+                <option value="4:00">4:00</option>
+                <option value="4:30">4:30</option>
+                <option value="5:00">5:00</option>
+                <option value="5:30">5:30</option>
+                <option value="6:00">6:00</option>
+                <option value="6:30">6:30</option>
+                <option value="7:00">7:00</option>
+                <option value="7:30">7:30</option>
+                <option value="8:00">8:00</option>
+                <option value="8:30">8:30</option>
+                <option value="9:00">9:00</option>
+                <option value="9:30">9:30</option>
+                </select>
 
                       
                         
