@@ -41,7 +41,7 @@ const Registration = () => {
                     window.location = "/Registration";
                 }
                 if (jsonData === "user registered"){
-                    window.location = "/";
+                    window.location = "/login";
                 }
             } catch (err) {
                 console.error(err.message);
