@@ -3,16 +3,18 @@ const PORT = process.env.PORT || 5001;
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
+
 /*const bcrypt = require('bcrypt');*/
 const bodyParser = require("body-parser");
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
+
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  password: "password",
+  password: "825351",
   port: 3306,
   database: "resturant-reservation-DB",
 });
@@ -31,6 +33,7 @@ app.post("/Registration", async (req, res) => {
     const { state } = req.body;
     const { zip } = req.body;
     const wholeAddress = address + ", " + city + " " + state + " " + zip;
+    console.log("aaaaa");
     db.query(
       "SELECT * FROM users WHERE email = ?",
       [email],

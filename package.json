@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "react-dropdown-select": "^4.8.0"
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "react-dropdown-select": "^4.8.0",
+    "validator": "^13.7.0"
   }
 }

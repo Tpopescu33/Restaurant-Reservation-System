@@ -19,7 +19,7 @@ const Profile = () => {
     const getInfo = async e => {
         try {
             const id = JSON.parse(localStorage.getItem('ID'));
-            const response = await fetch(`http://localhost:5000/Profile-info/${id}`);
+            const response = await fetch(`http://localhost:5001/Profile-info/${id}`);
             const jsonData = await response.json();
             setAddress1(jsonData.address);
             setName1(jsonData.name);
@@ -36,7 +36,7 @@ const Profile = () => {
     const getPoint = async e => {
         try {
             const id = JSON.parse(localStorage.getItem('ID'));
-            const response = await fetch(`http://localhost:5000/Profile/${id}`);
+            const response = await fetch(`http://localhost:5001/Profile/${id}`);
             const jsonData = await response.json();
             setEarnedPoint(jsonData);
         } catch (err) {
@@ -70,7 +70,7 @@ const Profile = () => {
                 return;
             }                                
             const body ={address, name, email, id};
-            const response = await fetch(`http://localhost:5000/Profile-edit`,{
+            const response = await fetch(`http://localhost:5001/Profile-edit`,{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)

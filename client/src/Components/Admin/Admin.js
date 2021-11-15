@@ -9,7 +9,7 @@ const Admin = () => {
  
   const selectReservations = async (e) => {
     try {
-      const response = await fetch(`http://localhost:5000/Admin`);
+      const response = await fetch(`http://localhost:5001/Admin`);
       const jsonData = await response.json();
       setReservations(jsonData);
     } catch (err) {
@@ -22,7 +22,7 @@ const Admin = () => {
       
       const body = {id};
       console.log(body);
-      const response = await fetch("http://localhost:5000/Admin-cancel",{
+      const response = await fetch("http://localhost:5001/Admin-cancel",{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
@@ -40,7 +40,7 @@ const Admin = () => {
   const searchByName = async e => {
     try {
       const body = {searchName};
-            const response = await fetch("http://localhost:5000/Admin-searchByName",{
+            const response = await fetch("http://localhost:5001/Admin-searchByName",{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
@@ -55,7 +55,7 @@ const Admin = () => {
   const searchByTime = async (e)=> {
     try {
       const body = {searchTime};
-            const response = await fetch("http://localhost:5000/Admin-searchByTime",{
+            const response = await fetch("http://localhost:5001/Admin-searchByTime",{
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)

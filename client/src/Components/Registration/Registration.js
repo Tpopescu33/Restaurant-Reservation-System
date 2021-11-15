@@ -30,7 +30,7 @@ const Registration = () => {
         } else{
             try{                                
                 const body = {name, email, password, address, city, state, zip};
-                const response = await fetch("http://localhost:5000/Registration",{
+                const response = await fetch("http://localhost:5001/Registration",{
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(body)
