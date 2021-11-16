@@ -23,7 +23,7 @@ const saltRound = 12;
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
-
+// ------------------Registration--------------------//
 app.post("/Registration", async (req, res) => {
   try {
     const { name } = req.body;
@@ -56,7 +56,7 @@ app.post("/Registration", async (req, res) => {
     console.log(err.message);
   }
 });
-
+// ------------------Login--------------------//
 app.post("/login", async (req, res) => {
   const { email } = req.body;
   const { password } = req.body;
@@ -95,26 +95,27 @@ app.post("/login", async (req, res) => {
     console.log(err.message);
   }
 });
-
+// ------------------Admin--------------------//
 app.get("/Admin", async (req, res) => {
   try {
     db.query(
-      "SELECT userIDs, name, email, password FROM users",
+      "SELECT * FROM reservation",
       (_err, rows, fields) => {
+        
         return res.json(rows);
       }
-    );
+    )
   } catch (err) {
     console.log(err.message);
   }
-});
-
+})
+// ------------------Admin sesearch by Name--------------------//
 app.post("/Admin-searchByName", async (req, res) => {
   const { searchName } = req.body;
   console.log(searchName);
   try {
     db.query(
-      "SELECT userIDs, name, email, password FROM users WHERE name=? ",
+      "SELECT * FROM reservation WHERE fullName=? ",
       searchName,
       (_err, rows, fields) => {
         return res.json(rows);
@@ -124,13 +125,13 @@ app.post("/Admin-searchByName", async (req, res) => {
     console.log(err.message);
   }
 });
-
+// ------------------Admin sesearch by Time--------------------//
 app.post("/Admin-searchByTime", async (req, res) => {
   const { searchTime } = req.body;
   console.log(searchTime);
   try {
     db.query(
-      "SELECT userIDs, name, email, password FROM users WHERE time=? ",
+      "SELECT * FROM reservation WHERE resDate=? ",
       searchTime,
       (_err, rows, fields) => {
         return res.json(rows);
@@ -145,7 +146,7 @@ app.post("/Admin-cancel", async (req, res) => {
   try {
     const { id } = req.body;
     console.log(id);
-    db.query("DELETE FROM users WHERE userIDs=?", id, (_err, rows, fields) => {
+    db.query("DELETE FROM reservation WHERE orderID=?", id, (_err, rows, fields) => {
       return res.json("deleted");
     });
   } catch (err) {
