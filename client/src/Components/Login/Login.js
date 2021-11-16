@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 import "./Login.css";
 
 
-const Login = () => {
+const Login = (props) => {
+
+    const {
+        isAuth,
+        setIsAuth,
+    } = props;
+
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -15,15 +22,21 @@ const Login = () => {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
+                
             });
             const jsonData = await response.json();
             console.log(jsonData);
             if (jsonData.role === "customer"){
+                setIsAuth(true)
                 window.localStorage.setItem("ID", JSON.stringify(jsonData.userIDs));
                 window.location = "/Profile";
+                
             }
             else if (jsonData.role === "admin"){
+                setIsAuth(true)
                 window.location = "/Admin";
+                console.log(isAuth)
+                setIsAuth(true)
             }
             else {
                 alert("Invalid user or password");

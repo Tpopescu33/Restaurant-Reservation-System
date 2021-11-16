@@ -496,7 +496,7 @@ const Reservation = (props) => {
                             id="resDate"
                             data-testid="testResDate"
                             
-                            
+                            min='2021-11-14'
                             required
                             value={resDate}
                             onChange={(e) => setResDate(e.target.value)}
