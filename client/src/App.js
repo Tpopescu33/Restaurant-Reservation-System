@@ -13,7 +13,7 @@ import './App.css';
 
 function App() {
 
-  const [isAuth, setIsAuth] = useState(true);  
+  const [isAuth, setIsAuth] = useState(false);  
   const [userID, setUserID] = useState(100000)
   return (
     <div className="App">
