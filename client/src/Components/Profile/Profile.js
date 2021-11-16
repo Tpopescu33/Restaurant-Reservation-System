@@ -4,6 +4,8 @@ import validator from 'validator'
 
 
 const Profile = () => {
+  
+
     var [address, setAddress] = useState("");
     var [name, setName] = useState("");
     var [email, setEmail] = useState("");
@@ -78,6 +80,8 @@ const Profile = () => {
             const jsonData = await response.json();
             if (jsonData === "updated"){
                 alert("Changes Completed");
+            } else if (jsonData === "Existed Email") {
+                alert("Please choose another email.")
             }
         } catch (err) {
             console.error(err.message);

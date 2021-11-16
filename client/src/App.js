@@ -39,11 +39,12 @@ function App() {
              <Reservation isAuth={isAuth} setIsAuth={setIsAuth} userID={userID} setUserID={setUserID}/>
           </Route>
           
+          <Route path="/Profile">
+             <Profile isAuth={isAuth} setIsAuth={setIsAuth}/>
+          </Route>
+          
             </div>
            
-            <div className='container'>
-              <Route exact path="/Profile" component={Profile} />
-            </div>
             <Footer />
         </Router>
     

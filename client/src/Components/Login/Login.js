@@ -29,7 +29,9 @@ const Login = (props) => {
             if (jsonData.role === "customer"){
                 
                 window.localStorage.setItem("ID", JSON.stringify(jsonData.userIDs));
+                setIsAuth(true);
                 window.location = "/Profile";
+                
                 
             }
             else if (jsonData.role === "admin"){
