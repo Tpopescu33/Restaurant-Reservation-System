@@ -27,16 +27,16 @@ const Login = (props) => {
             const jsonData = await response.json();
             console.log(jsonData);
             if (jsonData.role === "customer"){
-                setIsAuth(true)
+                
                 window.localStorage.setItem("ID", JSON.stringify(jsonData.userIDs));
                 window.location = "/Profile";
                 
             }
             else if (jsonData.role === "admin"){
-                setIsAuth(true)
+                
                 window.location = "/Admin";
                 console.log(isAuth)
-                setIsAuth(true)
+                
             }
             else {
                 alert("Invalid user or password");
