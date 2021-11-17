@@ -16,84 +16,6 @@ const Reservation = (props) => {
         userID
     } = props;
 
-    const times = [{
-                    value: '11:00',
-                    text:"11:00"
-                },{
-                    value: '11:30',
-                    text:"11:30"
-                },
-                    {
-                    value: '12:00',
-                    text:"12:00"
-                },{
-                    value:'12:30',
-                    text: '12:30'
-                    
-                },
-                    {
-                    value: '1:00',
-                    text:"1:00"
-                },{
-                    value: '1:30',
-                    text:"1:30"},
-                    {
-                        value: '2:00',
-                        text:"2:00"
-                    },{
-                        value: '2:30',
-                        text:"2:30"
-                    },
-                        {
-                        value: '3:00',
-                        text:"3:00"
-                    },{
-                        value:'3:30',
-                        text: '3:30'
-                        
-                    },
-                        {
-                        value: '4:00',
-                        text:"4:00"
-                    },{
-                        value: '4:30',
-                        text:"4:30"},
-                        {
-                            value: '5:00',
-                            text:"5:00"
-                        },{
-                            value: '5:30',
-                            text:"5:30"
-                        },
-                            {
-                            value: '6:00',
-                            text:"6:00"
-                        },{
-                            value:'6:30',
-                            text: '6:30'
-                            
-                        },
-                            {
-                            value: '7:00',
-                            text:"7:00"
-                        },{
-                            value: '7:30',
-                            text:"7:30"},
-                            {
-                                value: '8:00',
-                                text:"8:00"
-                            },{
-                                value: '8:30',
-                                text:"8:30"
-                            },
-                                {
-                                value: '9:00',
-                                text:"9:00"
-                            },{
-                                value:'9:30',
-                                text: '9:30'
-                                
-                            }]
 
     const [table, setTable] = useState([])
     const [tablePicked, setTablePicked] = useState(false)
@@ -105,7 +27,7 @@ const Reservation = (props) => {
     const [popup5Trigger, setPopup5Trigger] = useState(false)
     const [tablesAvailable, setTablesAvailable] = useState(true)
     const [isHoliday, setIsHoliday] = useState(false);
-    const [holidayList, setHolidayList] = useState(["2021-07-04"]);
+    const [holidayList, setHolidayList] = useState(["2021-07-04","2021-11-26","2021-11-25"]);
     const [fullName, setFullName] = useState('');
     const [contactNumber, setContactNumber] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
@@ -120,41 +42,13 @@ const Reservation = (props) => {
     const [resTimeErr, setResTimeErr] = useState('')
     const [reservedTables, setReservedTables] = useState([""])
     const [tempReservedTables, setTempReservedTables] = useState([''])
-    const [tempResTime, setTempResTime] = useState(['']);
     const [tableString, setTableString] = useState('')
     const [tempReservedTablesArray, setTempReservedTablesArray] = useState([""])
+    const [creditCardNum, setCreditCardNum] = useState("")
+    const [expDate, setExpDate] = useState("")
+    const [billZipCode, setBillZipCode] = useState("")
 
-    // const handleArray = () => {
-        
 
-    //     table.map((val, key)=> {
-    //         return <div>
-    //             {
-                
-    //                 setTableString(table.toString())
-                    
-                
-    //             }
-
-    //         </div>
-    //     })
-
-       
-    // }
-
-    
-
-//     const mapResTime = () => {
-//         setResTime('')
-// setResTime(tempResTime)
-//     }            
-
-//     const handleChange = (e, result) => {
-        
-//         setTempResTime(e)
-        
-
-//       }
 
 
     const pickTable = (e) => {
@@ -192,7 +86,7 @@ const Reservation = (props) => {
         }).then((response) => {
             
             setTempReservedTables(response.data)
-            // mapReservedTables()
+            
             
         }).catch((error)=> {
             console.log(error)
@@ -238,18 +132,7 @@ const Reservation = (props) => {
     const handleSubmit = (e) =>{
         const isValid = formValidation()
 
-        // table.map((val, key)=> {
-        //     return <div>
-        //         {
-                
-        //             setTableString(table.toString())
-                    
-                
-        //         }
-
-        //     </div>
-        // }) 
-        // console.log("tablestring",tableString)
+      
         if (tableString != ''){
 
         if(isAuth === true && isValid === true && isHoliday === false && tablesAvailable === true){
@@ -298,7 +181,7 @@ const Reservation = (props) => {
             setPopup2Trigger(true)
         }
         if(isAuth === true && isValid === true && isHoliday === true && tablesAvailable === true){
-            setPopup3Trigger(true)
+            setPopup2Trigger(true)
 
 
 
@@ -406,7 +289,7 @@ const Reservation = (props) => {
     useEffect(()=> checkIfUser(),[])
     useEffect(()=> checkHoliday(),[handleSubmit])
     useEffect(()=> handleResTime(resTime, resDate),[resTime, resDate])
- //   useEffect(() => mapResTime(tempResTime), [tempResTime] )
+    
     useEffect(()=> testResTable(), [reservedTables])
     useEffect(()=> mapReservedTables(), [tempReservedTables])
     useEffect(()=> checkArray(), [tempReservedTablesArray])
@@ -486,10 +369,7 @@ const Reservation = (props) => {
                             className = "err-msg">{numGuestsErr[key]}</div>
                     })} 
 
-                        {/* <label>Table # Picked</label>
-                        <h1 className="form3">{table}</h1> */}
-
-
+                        
                          <label>Date:</label>
                          <input
                             className="form3"
@@ -510,17 +390,7 @@ const Reservation = (props) => {
                     })} 
                          <label>Time:</label>
 
-                    {/* <Select 
-                    className="form4"
-                    data-testid="testResTime"
-                    placeholder= "Select Time"
-                    value={resTime}
-                    type ="text"
-                    required
-                    select
-                    labelField= "value"
-                    options= {times} 
-                    onChange={(e) => handleChange(e)}/> */}
+                  
 
                 <select 
                 className="form4"
@@ -530,28 +400,28 @@ const Reservation = (props) => {
                 value={resTime}
                 placeholder= "Select Time"
                 onChange={(e) => setResTime(e.target.value)}>
-                <option value="11:00">11:00</option>
-                <option value="11:30">11:30</option>
-                <option value="12:00">12:00</option>
-                <option value="12:30">12:30</option>
-                <option value="1:00">1:00</option>
-                <option value="1:30">1:30</option>
-                <option value="2:00">2:00</option>
-                <option value="2:30">2:30</option>
-                <option value="3:00">3:00</option>
-                <option value="3:30">3:30</option>
-                <option value="4:00">4:00</option>
-                <option value="4:30">4:30</option>
-                <option value="5:00">5:00</option>
-                <option value="5:30">5:30</option>
-                <option value="6:00">6:00</option>
-                <option value="6:30">6:30</option>
-                <option value="7:00">7:00</option>
-                <option value="7:30">7:30</option>
-                <option value="8:00">8:00</option>
-                <option value="8:30">8:30</option>
-                <option value="9:00">9:00</option>
-                <option value="9:30">9:30</option>
+                <option value="11:00">11:00 am</option>
+                <option value="11:30">11:30 am</option>
+                <option value="12:00">12:00 pm</option>
+                <option value="12:30">12:30 pm</option>
+                <option value="1:00">1:00 pm</option>
+                <option value="1:30">1:30 pm</option>
+                <option value="2:00">2:00 pm</option>
+                <option value="2:30">2:30 pm</option>
+                <option value="3:00">3:00 pm</option>
+                <option value="3:30">3:30 pm</option>
+                <option value="4:00">4:00 pm</option>
+                <option value="4:30">4:30 pm</option>
+                <option value="5:00">5:00 pm</option>
+                <option value="5:30">5:30 pm</option>
+                <option value="6:00">6:00 pm</option>
+                <option value="6:30">6:30 pm</option>
+                <option value="7:00">7:00 pm</option>
+                <option value="7:30">7:30 pm</option>
+                <option value="8:00">8:00 pm</option>
+                <option value="8:30">8:30 pm</option>
+                <option value="9:00">9:00 pm</option>
+                <option value="9:30">9:30 pm</option>
                 </select>
 
                       
@@ -580,15 +450,62 @@ const Reservation = (props) => {
                         <Popup1 trigger={popup1Trigger} setTrigger={setPopup1Trigger}>
                             <h1>Would you like to register to earn rewards?</h1>
                         </Popup1>
-                        <Popup2 trigger={popup2Trigger} setTrigger={setPopup2Trigger}>
+                        <Popup2 trigger={popup2Trigger} setTrigger={setPopup2Trigger} trigger3={popup3Trigger} setTrigger3={setPopup3Trigger}>
                             <h3>You have choosen to make a reservation on a Holiday</h3>
                             <h3>We require a Credit Card on file to reserve a table on a Holiday</h3>
-                            <h3>Please register</h3>
+                            <h3>Please enter credit card information</h3>
                         </Popup2>
                         <Popup3 trigger={popup3Trigger} setTrigger={setPopup3Trigger}>
-                        <h3>You have choosen to make a reservation on a Holiday</h3>
+
+                            <h3>Enter Credit Card Info Below</h3>
+                            <div className="res-form">
+                            <label>Enter Credit Card Number:</label>
+                         <input
+                            className="form4"
+                            id="cc"
+                            data-testid="testCC"
+                            required
+                            value={creditCardNum}
+                            onChange={(e) => setCreditCardNum(e.target.value)}
+                            type="Int"
+                            
+                            name="creditCardNum"
+                            placeholder="Credit card number"
+                        />  
+                        <label>Enter Expiration Date:</label>
+                         <input
+                            className="form4"
+                            id="expDate"
+                            data-testid="testExpDate"
+                            required
+                            value={expDate}
+                            onChange={(e) => setExpDate(e.target.value)}
+                            type="text"
+                            
+                            name="expDate"
+                            placeholder="MM/YYYY"
+                        />  
+                        <label>Enter Billing Zipcode:</label>
+                         <input
+                            className="form4"
+                            id="billZipCode"
+                            data-testid="testBillZipCode"
+                            required
+                            value={billZipCode}
+                            onChange={(e) => setBillZipCode(e.target.value)}
+                            type="Int"
+                            
+                            name="Billing ZipCode"
+                            placeholder="xxxxx or xxxxx-xxxx"
+                        />  
+                        {/* {Object.keys(numGuestsErr).map((key)=>{
+                            return <div 
+                            className = "err-msg">{numGuestsErr[key]}</div>
+                    })}  */}
+                            </div>
+                        
                         <h3>A $10 holding fee will be automatically charged to your Credit Card</h3>
-                        <h3>Your fee will be refunded, unless you "No Show"</h3>
+                        
                         </Popup3>
                         <Popup4 trigger={popup4Trigger} setTrigger={setPopup4Trigger}>
                             <h2>There are no tables available, Please choose another date</h2>
