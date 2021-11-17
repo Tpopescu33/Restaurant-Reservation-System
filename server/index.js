@@ -190,6 +190,34 @@ app.post('/MakeReservation', (req,res) => {
   
 })
 
+app.post('/MakeCreditCardReservation', (req,res) => {
+  const userID = req.body.userID
+  const fullName = req.body.fullName
+  const contactNumber = req.body.contactNumber
+  const emailAddress = req.body.emailAddress
+  const numGuests = req.body.numGuests
+  const resDate = req.body.resDate
+  const resTime = req.body.resTime
+  const table = req.body.table
+  const creditCardNum = req.body.creditCardNum
+  const expDate = req.body.expDate
+  const billZipCode = req.body.billZipCode
+  const sqlinsert = "INSERT INTO `reservation` (`userID`, `fullName`, `contactNumber`, `emailAddress`, `numGuests`, `resDate`, `resTime`, `table`, `creditCardNum`, `expDate`, `billZipCode`) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+  console.log(userID, fullName, contactNumber,emailAddress, numGuests, resDate, resTime, table, creditCardNum, expDate, billZipCode)
+
+  db.query(sqlinsert, 
+    [userID, fullName, contactNumber, emailAddress, numGuests,resDate, resTime, table, creditCardNum, expDate, billZipCode], 
+    (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("success")
+      res.send("Values inserted")
+    }
+  })
+  
+})
+
 
 
 

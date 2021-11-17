@@ -16,7 +16,7 @@ const Reservation = (props) => {
         userID
     } = props;
 
-
+    const [submitTrigger, setSubmitTrigger] = useState(0)
     const [table, setTable] = useState([])
     const [tablePicked, setTablePicked] = useState(false)
     const [tablePickerTrigger, setTablePickerTrigger] = useState(false)
@@ -109,6 +109,9 @@ const Reservation = (props) => {
         setTablePicked(false)
         setTable([])
         setTableString('')
+        setCreditCardNum('')
+        setExpDate('')
+        setBillZipCode('')
     }
     
     const handleTableString = () =>{
@@ -128,6 +131,34 @@ const Reservation = (props) => {
         console.log("tablestring",tableString)
     }
 
+    const handleCreditCardSubmit = (e) => {
+        const isValid = formValidation()
+
+
+        if(isValid === true && isHoliday === true && tablesAvailable === true ){
+            
+            Axios.post('http://localhost:5001/MakeCreditCardReservation', {
+                userID: userID,
+                fullName: fullName,
+                contactNumber: contactNumber,
+                emailAddress: emailAddress, 
+                numGuests: numGuests, 
+                resDate: resDate, 
+                resTime: resTime,  
+                table: tableString,
+                creditCardNum: creditCardNum,
+                expDate: expDate,
+                billZipCode: billZipCode
+
+            }).then(() => {
+                console.log("sent")
+                setPopup3Trigger(false)
+                clearForm()
+            }) 
+        }
+        
+
+    }
 
     const handleSubmit = (e) =>{
         const isValid = formValidation()
@@ -177,30 +208,12 @@ const Reservation = (props) => {
                 clearForm()
             }) 
         }
-        if(isAuth === false && isValid === true && isHoliday === true && tablesAvailable === true){
+        if(isValid === true && isHoliday === true && tablesAvailable === true){
             setPopup2Trigger(true)
         }
-        if(isAuth === true && isValid === true && isHoliday === true && tablesAvailable === true){
-            setPopup2Trigger(true)
+      
 
-
-
-            Axios.post('http://localhost:5001/MakeReservation', {
-                userID: userID,
-                fullName: fullName,
-                contactNumber: contactNumber,
-                emailAddress: emailAddress, 
-                numGuests: numGuests, 
-                resDate: resDate, 
-                resTime: resTime,  
-                table: tableString
-
-            }).then(() => {
-                console.log("sent")
-                clearForm()
-            }) 
-
-        }
+        
         if(isValid === true && tablesAvailable === false){
             setPopup4Trigger(true)
         }
@@ -267,7 +280,7 @@ const Reservation = (props) => {
         return isValid;
     }
 
-    console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table, tableString)
+    console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table, tableString, creditCardNum, expDate, billZipCode,submitTrigger)
 
     const testResTable=() => {
         console.log(reservedTables)
@@ -295,6 +308,7 @@ const Reservation = (props) => {
     useEffect(()=> checkArray(), [tempReservedTablesArray])
     useEffect(()=> handleTableString(), [table])
     useEffect(()=> checkGuestNumber(), [numGuests])
+    useEffect(()=> handleCreditCardSubmit(), [submitTrigger])
 
     return (
         <div>
@@ -455,19 +469,19 @@ const Reservation = (props) => {
                             <h3>We require a Credit Card on file to reserve a table on a Holiday</h3>
                             <h3>Please enter credit card information</h3>
                         </Popup2>
-                        <Popup3 trigger={popup3Trigger} setTrigger={setPopup3Trigger}>
+                        <Popup3 trigger={popup3Trigger} setTrigger={setPopup3Trigger} setSubmitTrigger={setSubmitTrigger} submitTrigger={submitTrigger}>
 
                             <h3>Enter Credit Card Info Below</h3>
                             <div className="res-form">
                             <label>Enter Credit Card Number:</label>
                          <input
-                            className="form4"
+                            className="form5"
                             id="cc"
                             data-testid="testCC"
                             required
                             value={creditCardNum}
                             onChange={(e) => setCreditCardNum(e.target.value)}
-                            type="Int"
+                            type="text"
                             
                             name="creditCardNum"
                             placeholder="Credit card number"
