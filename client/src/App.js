@@ -15,18 +15,19 @@ function App() {
 
   const [isAuth, setIsAuth] = useState(false);  
   const [userID, setUserID] = useState(100000)
+  const [isAdmin, setIsAdmin] = useState(false)
   return (
     <div className="App">
      
         
         <Router>
-            <NavBar isAuth={isAuth} setIsAuth={setIsAuth}/>
+            <NavBar isAuth={isAuth} setIsAuth={setIsAuth} isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>
 
             <div className='container'>
               <Route exact path="/" component={Home} />
 
           <Route path="/login">
-             <Login isAuth={isAuth} setIsAuth={setIsAuth} userID={userID} setUserID={setUserID}/>
+             <Login isAuth={isAuth} setIsAuth={setIsAuth} userID={userID} setUserID={setUserID} isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>
           </Route>
 
           <Route path="/Admin">

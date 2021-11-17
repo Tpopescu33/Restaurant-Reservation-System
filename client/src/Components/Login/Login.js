@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import "./Login.css";
 
 
@@ -8,12 +8,16 @@ const Login = (props) => {
     const {
         isAuth,
         setIsAuth,
+        userID,
+        setUserID,
+        isAdmin,
+        setIsAdmin
     } = props;
 
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    let history = useHistory()
     const submitForm = async e  => {
         e.preventDefault();
         try{
@@ -29,12 +33,16 @@ const Login = (props) => {
             if (jsonData.role === "customer"){
                 
                 window.localStorage.setItem("ID", JSON.stringify(jsonData.userIDs));
-                window.location = "/Profile";
+                setIsAuth(true)
+                setUserID(jsonData.userIDs)
+
+                history.push('/Profile');
                 
             }
             else if (jsonData.role === "admin"){
-                
-                window.location = "/Admin";
+                setIsAuth(true)
+                setIsAdmin(true)
+                history.push('/Admin');
                 console.log(isAuth)
                 
             }

@@ -8,10 +8,13 @@ function NavBar(props) {
     const {
         isAuth,
         setIsAuth,
+        setIsAdmin,
+        isAdmin
     } = props;
 
     const handleSignOut = (e) => {
         setIsAuth(false)
+        setIsAdmin(false)
     }
 
     return (
@@ -26,8 +29,21 @@ function NavBar(props) {
                     
                     {(isAuth === true) ? (
                         <div>
-                            <Link to="/Profile" className="nav">Manage Profile</Link>
-                            <Link to="/login"><button className="btn-signin" onClick={handleSignOut}>Sign Out</button></Link>
+
+                            {(isAdmin === true) ? (
+                                <div>
+                                    <Link to="/Profile" className="nav">Manage Profile</Link>
+                                    <Link to="/Admin" className="nav">Admin Dashboard</Link>
+                                    <Link to="/login"><button className="btn-signin" onClick={handleSignOut}>Sign Out</button></Link>
+                                    
+                        </div>
+                            ):(
+                                <div>
+                                <Link to="/Profile" className="nav">Manage Profile</Link>
+                                <Link to="/login"><button className="btn-signin" onClick={handleSignOut}>Sign Out</button></Link>
+                                </div>
+                            )}
+                            
                         </div>
                     ) : (
                         <div>
