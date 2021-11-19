@@ -52,76 +52,64 @@ const Registration = () => {
 
 
     return (
-        <div>
-            <html lang="en">
-            <head>
-                <meta charSet="UTF-8"/>
-                
-                <title> Tasty - Register</title>                
-            </head>            
+              
 
-            <div class="register-page">
-                <h2 id="title">New Member</h2>
+            <div class="res-background">
+                <h1 class="title-res">New Member</h1>
                 
-                    <form class = "register-form" onSubmit={submitForm}>
-                        <div class="register-form-group">
-                            <label id="name-label" for="name">Name</label><br></br>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required
+                    <form class = "res-form" onSubmit={submitForm}>
+                        
+                            <label id="name-label" for="name">Name</label>
+                            <input type="text" name="name" id="name" class="form1" placeholder="Enter your name" required
                             value={name} onChange={e => setName(e.target.value)}/>
-                        </div>
-                        <div class = "register-form-group">
-                            <label id="email-label" for="email">Email</label><br></br>
-                            <input type="text" class="form-control" name="email" placeholder="Enter your email" required="required" 
+                        
+                        
+                            <label id="email-label" for="email">Email</label>
+                            <input type="text" class="form1" name="email" placeholder="Enter your email" required="required" 
                             value={email} onChange={e => setEmail(e.target.value)}/> <span style={{
                                 fontWeight: 'bold', color: 'red'
                             }}>{emailError}</span>
-                        </div>
-                        <div class = "register-form-group">
-                            <label id="password-label" for="password">Password</label><br></br>
-                            <input type="password" class="form-control" id= "password" name="password" placeholder="Enter your password" required="required"
+                        
+                        
+                            <label id="password-label" for="password">Password</label>
+                            <input type="password" class="form1" id= "password" name="password" placeholder="Enter your password" required="required"
                             value={password} onChange={e => setPassword(e.target.value)}/> 
                             
-                        </div>
-                        <div class = "register-form-group">
-                            <label id="confirmedPassword-label" for="confirmedPassword">Confirm Password</label><br></br>
-                            <input type="password" class="form-control" id= "confirmedPassword" name="confirmedPassword" placeholder="Confirm  your password" required="required"
+                        
+                            <label id="confirmedPassword-label" for="confirmedPassword">Confirm Password</label>
+                            <input type="password" class="form1" id= "confirmedPassword" name="confirmedPassword" placeholder="Confirm  your password" required="required"
                             value={confirmedPassword} onChange={e => setCPassword(e.target.value)}/>
                             
-                        </div>
+                        
                         <h3>Mailing Address</h3>
-                        <div class="register-form-group">
-                            <label id="address-label" for="address">Address</label><br></br>
-                            <input type="text" name="address" id="address" class="form-control" placeholder="789 Hennessey Dr" required
+                 
+                            <label id="address-label" for="address">Address</label>
+                            <input type="text" name="address" id="address" class="form1" placeholder="789 Hennessey Dr" required
                             value={address} onChange={e => setAddress(e.target.value)}/>
-                        </div>
-                        <div class="register-form-group">
-                            <label id="city-label" for="city">City</label><br></br>
-                            <input type="text" name="city" id="city" class="form-control" placeholder="fineWine" required
+                        
+                            <label id="city-label" for="city">City</label>
+                            <input type="text" name="city" id="city" class="form1" placeholder="fineWine" required
                             value={city} onChange={e => setCity(e.target.value)}/>
-                        </div>
-                        <div class="register-form-group col-50">
-                            <label id="state-label" for="state">State</label><br></br>
-                            <input type="text" name="state" id="state" class="form-control" placeholder="TX" required
+                        
+                            <label id="state-label" for="state">State</label>
+                            <input type="text" name="state" id="state" class="form1" placeholder="TX" required
                             value={state} onChange={e => setState(e.target.value)}/>
-                        </div>
-                        <div class="register-form-group col-50">
-                            <label id="zip-label" for="zip">Zip code</label><br></br>
-                            <input type="text" name="zip" id="zip" class="form-control" placeholder="77467" pattern="[0-9]*" maxlength="9" minlength="5" size = "10" required
+                        
+                            <label id="zip-label" for="zip">Zip code</label>
+                            <input type="text" name="zip" id="zip" class="form1" placeholder="77467" pattern="[0-9]*" maxlength="9" minlength="5" size = "10" required
                             value={zip} onChange={e => setZip(e.target.value)}/>
-                        </div>
+                      
                         <div class="checkAddress">
                             <input type="hidden" name="differentAddress" value="no"/>
                             <input type="checkbox" name="sameAddress" value="yes"/> 
                             <label for="billingAddress" >Billing address same as mailing</label>
-                        </div> <br></br>         
-                        <div><button type="submit" class="Sign-Up">Create</button></div>
+                        </div>         
+                        <button type="submit" class="btn-submit" style={{width: "20%"}}>Create</button>
                     </form>
                     <p class="Registered">Already have an account? <Link to="/login"><u><b>   Login here!   </b></u></Link></p>
                 </div>
-                
 
-            </html>
-        </div>
+       
     )
 }
 
