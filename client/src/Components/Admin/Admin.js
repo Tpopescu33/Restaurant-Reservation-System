@@ -7,13 +7,21 @@ const Admin = () => {
   const [reservations2, setReservations2] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [searchTime, setSearchTime] = useState("");
-  const jsonData2 = [];
+  
   const selectReservations = async e => {
     try {
       const response = await fetch(`http://localhost:5001/Admin`);
       const jsonData = await response.json();
+      const jsonData2 = [];
+      const jsonData1 = [];
+      jsonData.forEach(e => {
+        if (e.table.length < 3) {
+          jsonData1.push(e);
+        }
+      });
+
       console.log(jsonData);
-      setReservations(jsonData);
+      setReservations(jsonData1);
       jsonData.forEach(e => {
         if (e.table.length > 3) {
           jsonData2.push(e);
@@ -56,7 +64,16 @@ const Admin = () => {
                 body: JSON.stringify(body)
             });
             const jsonData = await response.json();
+            const jsonData2 = [];
             setReservations(jsonData);
+            jsonData.forEach(e => {
+              if (e.table.length > 3) {
+                jsonData2.push(e);
+              }
+            });
+            console.log(jsonData2);
+            
+            setReservations2(jsonData2);
     } catch (err) {
       console.log(err.message);
     }
@@ -71,7 +88,16 @@ const Admin = () => {
                 body: JSON.stringify(body)
             });
             const jsonData = await response.json();
+            const jsonData2 = [];
             setReservations(jsonData);
+            jsonData.forEach(e => {
+              if (e.table.length > 3) {
+                jsonData2.push(e);
+              }
+            });
+            console.log(jsonData2);
+            
+            setReservations2(jsonData2);
     } catch (err) {
       console.log(err.message);
     }
