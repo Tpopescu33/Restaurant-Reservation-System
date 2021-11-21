@@ -42,8 +42,8 @@ app.post("/Registration", async (req, res) => {
           console.log(rows.length);
           if (rows.length === 0) {
             db.query(
-              "INSERT INTO users (name, email, address, password, role) VALUES (?,?,?,?,?)",
-              [name, email, wholeAddress, hash, "customer"]
+              "INSERT INTO users (name, email, address, password, role, points) VALUES (?,?,?,?,?,?)",
+              [name, email, wholeAddress, hash, "customer", 0]
             );
             res.json("user registered");
           } else {
@@ -221,11 +221,12 @@ app.post("/MakeReservation", (req, res) => {
 //---------------------------RESERVATION-END---------------------------------------//
 app.get("/Profile-info/:id", async (req, res) => {
   try {
-    var id = req.params.id;
+    let id = req.params.id;
     db.query(
-      "SELECT address, name, email FROM users WHERE userIDs = ?",
+      "SELECT address, name, email, points FROM users WHERE userIDs = ?",
       id,
       (err, rows, fields) => {
+        console.log(rows[0]);
         return res.json(rows[0]);
       }
     );
@@ -233,6 +234,44 @@ app.get("/Profile-info/:id", async (req, res) => {
     console.log(err.message);
   }
 });
+
+app.post("/Profile-redeem", async (req,res) => {
+  try {
+    
+    let id = req.body.id;
+    let code = req.body.code;
+    console.log(code);
+    let substring = "tasty";
+    if (code.includes(substring)) {
+      db.query(
+        "UPDATE users SET points = points + 1 WHERE userIDs = ?",
+        id,
+        (err, rows, fields) => {
+          return res.json("Redeemed");
+        }
+        );
+    } else {
+      return res.json("invalid code");
+    }
+    
+  } catch (err) {
+    console.log(err.message);
+  }
+})
+// app.get("/Profile/:id", async (req, res) => {
+//   try {
+//     let id = req.params.id;
+//     db.query(
+//       "SELECT points FROM users WHERE userIDs = ?",
+//       id,
+//       (err, rows, fields) => {
+//         return res.json(rows[0]);
+//       }
+//     );
+//   } catch (err) {
+//     console.log(err.message);
+//   }
+// });
 
 app.post("/Profile-edit", async (req, res) => {
   try {
@@ -256,10 +295,7 @@ app.post("/Profile-edit", async (req, res) => {
         console.log("1");
         res.json("updated");
     
-      }})
-
-    
-    
+      }})  
   } catch (err) {
     console.log(err.message);
   }

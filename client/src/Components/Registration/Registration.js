@@ -65,7 +65,7 @@ const Registration = () => {
                         
                         
                             <label id="email-label" for="email">Email</label>
-                            <input type="text" class="form1" name="email" placeholder="Enter your email" required="required" 
+                            <input type="text" class="form1"  name="email" placeholder="Enter your email" required="required" 
                             value={email} onChange={e => setEmail(e.target.value)}/> <span style={{
                                 fontWeight: 'bold', color: 'red'
                             }}>{emailError}</span>
