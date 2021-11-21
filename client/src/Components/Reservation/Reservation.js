@@ -7,7 +7,7 @@ import Popup2 from "./Popup2";
 import Popup3 from "./Popup3";
 import Popup4 from "./Popup4";
 import TablePicker from "./TablePicker";
-import Select from "react-dropdown-select"
+
 
 const Reservation = (props) => {
 
@@ -25,6 +25,7 @@ const Reservation = (props) => {
     const [popup2Trigger, setPopup2Trigger] = useState(false)
     const [popup1Trigger, setPopup1Trigger] = useState(false)
     const [popup5Trigger, setPopup5Trigger] = useState(false)
+    const [popup6Trigger, setPopup6Trigger] = useState(false)
     const [tablesAvailable, setTablesAvailable] = useState(true)
     const [isHoliday, setIsHoliday] = useState(false);
     const [holidayList, setHolidayList] = useState(["2021-07-04","2021-11-26","2021-11-25"]);
@@ -153,6 +154,7 @@ const Reservation = (props) => {
             }).then(() => {
                 console.log("sent")
                 setPopup3Trigger(false)
+                setPopup6Trigger(true)
                 clearForm()
             }) 
         }
@@ -205,6 +207,7 @@ const Reservation = (props) => {
 
             }).then(() => {
                 console.log("sent")
+                setPopup6Trigger(true)
                 clearForm()
             }) 
         }
@@ -286,9 +289,11 @@ const Reservation = (props) => {
         console.log(reservedTables)
     }
     const checkIfUser =()=> {
+        
         if (isAuth == false) {
             setPopup1Trigger(true)
         }
+        clearForm()
     }
 
     const checkGuestNumber = () => {
@@ -469,7 +474,7 @@ const Reservation = (props) => {
                             <h3>We require a Credit Card on file to reserve a table on a Holiday</h3>
                             <h3>Please enter credit card information</h3>
                         </Popup2>
-                        <Popup3 trigger={popup3Trigger} setTrigger={setPopup3Trigger} setSubmitTrigger={setSubmitTrigger} submitTrigger={submitTrigger}>
+                        <Popup3 trigger={popup3Trigger} setTrigger={setPopup3Trigger} setSubmitTrigger={setSubmitTrigger} submitTrigger={submitTrigger} setTrigger4={setPopup6Trigger} trigger4={popup6Trigger}>
 
                             <h3>Enter Credit Card Info Below</h3>
                             <div className="res-form">
@@ -529,6 +534,11 @@ const Reservation = (props) => {
                             <h2>The max party size is 16</h2>
                             <h2>If you wish to book a larger party please call the resturant</h2>
                             <h2>We are very sorry for the inconvenience</h2>
+                        </Popup4>
+                        <Popup4 trigger={popup6Trigger} setTrigger={setPopup6Trigger}>
+                            <h2>Your reservation is confirmed</h2>
+                            
+
                         </Popup4>
                         <TablePicker trigger={tablePickerTrigger} setTrigger={setTablePickerTrigger} setTablePicked={setTablePicked} setTable={setTable} table={table} numGuests={numGuests} setNumGuests={setNumGuests} setReservedTables={setReservedTables} reservedTables={reservedTables}>
                             <h1>Please pick a table</h1>
