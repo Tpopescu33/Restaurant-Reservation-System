@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  password: "825351",
-  // password: "password",
+  //password: "825351",
+  password: "password",
   port: 3306,
   database: "resturant-reservation-DB",
 });
