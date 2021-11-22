@@ -25,14 +25,14 @@ function NavBar(props) {
                     <Link to="/" className="nav">Home</Link>
                     <Link to="/menu" className="nav">Menu</Link>
                     <Link to="/reservation" className="nav">Make A Reservation </Link>
-                    <Link to="/about-us" className="nav">About Us</Link>
+                    
                     
                     {(isAuth === true) ? (
                         <div>
 
                             {(isAdmin === true) ? (
                                 <div>
-                                    <Link to="/Profile" className="nav">Manage Profile</Link>
+                                    
                                     <Link to="/Admin" className="nav">Admin Dashboard</Link>
                                     <Link to="/login"><button className="btn-signin" onClick={handleSignOut}>Sign Out</button></Link>
                                     
