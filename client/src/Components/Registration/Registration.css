@@ -18,7 +18,7 @@ p {
   text-align: center;
 }
 
-form {
+/* form {
     background: var(--gradientColor);
     width: 60%;
     display: block;
@@ -26,7 +26,7 @@ form {
     border-radius: 0.25rem;
     box-sizing: border-box;
     margin: auto;
-}
+} */
 
 .register-form-group {
   margin: 0 auto 1.25rem auto;
@@ -54,7 +54,7 @@ form {
   clear: left;
 }
 
-#state {
+/* #state {
   width: 50%;
   padding: 0.375rem 0.2rem; 
 }
@@ -62,9 +62,9 @@ form {
 #zip {
   width: 50%;
   padding: 0.375rem 1rem;
-}
+} */
 
-button {
+/* button {
   background-color: #04AA6D;
   color: white;
   padding: 1rem 0.75rem;
@@ -73,7 +73,7 @@ button {
   cursor: pointer;
   width: 50%;
   display: block;
-}
+} */
 
 button:hover {
   opacity: 0.8;

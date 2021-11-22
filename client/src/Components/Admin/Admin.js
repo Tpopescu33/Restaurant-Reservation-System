@@ -4,14 +4,32 @@ import "./Admin.css";
 
 const Admin = () => {
   const [reservations, setReservations] = useState([]);
+  const [reservations2, setReservations2] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [searchTime, setSearchTime] = useState("");
- 
-  const selectReservations = async (e) => {
+  
+  const selectReservations = async e => {
     try {
       const response = await fetch(`http://localhost:5001/Admin`);
       const jsonData = await response.json();
-      setReservations(jsonData);
+      const jsonData2 = [];
+      const jsonData1 = [];
+      jsonData.forEach(e => {
+        if (e.table.length < 3) {
+          jsonData1.push(e);
+        }
+      });
+
+      console.log(jsonData);
+      setReservations(jsonData1);
+      jsonData.forEach(e => {
+        if (e.table.length > 3) {
+          jsonData2.push(e);
+        }
+      });
+      console.log(jsonData2);
+      
+      setReservations2(jsonData2);
     } catch (err) {
       console.log(err.message);
     }
@@ -46,7 +64,16 @@ const Admin = () => {
                 body: JSON.stringify(body)
             });
             const jsonData = await response.json();
+            const jsonData2 = [];
             setReservations(jsonData);
+            jsonData.forEach(e => {
+              if (e.table.length > 3) {
+                jsonData2.push(e);
+              }
+            });
+            console.log(jsonData2);
+            
+            setReservations2(jsonData2);
     } catch (err) {
       console.log(err.message);
     }
@@ -61,7 +88,16 @@ const Admin = () => {
                 body: JSON.stringify(body)
             });
             const jsonData = await response.json();
+            const jsonData2 = [];
             setReservations(jsonData);
+            jsonData.forEach(e => {
+              if (e.table.length > 3) {
+                jsonData2.push(e);
+              }
+            });
+            console.log(jsonData2);
+            
+            setReservations2(jsonData2);
     } catch (err) {
       console.log(err.message);
     }
@@ -97,7 +133,7 @@ const Admin = () => {
               <div id="time-search">
                 <div class="panel-body">
                   <div>
-                  <input type="time" class="form-control" id= "search-time" name="search-time"  required
+                  <input type="date" class="form-control" id= "search-time" name="search-time"  required
                                 value = {searchTime}
                                 onChange={e=>setSearchTime(e.target.value)}/>
                   </div>
@@ -117,19 +153,21 @@ const Admin = () => {
                     <th>Name</th>
                     <th>Email</th>
                     <th>Booked at</th>
+                    <th>Table</th>
                     <th>Delete </th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  {reservations.map((users) => (
-                    <tr key={users.userIDs}>
-                      <td>{users.userIDs}</td>
-                      <td>{users.name}</td>
-                      <td>{users.email}</td>
-                      <td>{users.password}</td>
+                  {reservations.map((reservation) => (
+                    <tr key={reservation.orderID}>
+                      <td>{reservation.orderID}</td>
+                      <td>{reservation.fullName}</td>
+                      <td>{reservation.emailAddress}</td>
+                      <td>{reservation.resDate} at {reservation.resTime}</td>
+                      <td>{reservation.table}</td>
                       <td>
-                        <button type="button" onClick={() => cancelReservation(users.userIDs)}>x</button>
+                        <button type="button" onClick={() => cancelReservation(reservation.orderID)}>x</button>
                       </td>
                     </tr>
                   ))}
@@ -140,6 +178,35 @@ const Admin = () => {
 
           <div class="col-372">
             <span>this is combined reserved table </span>
+            <div align="center">
+              <table class="table-1">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Booked at</th>
+                    <th>Table</th>
+                    <th>Delete </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {reservations2.map((reservation) => (
+                    <tr key={reservation.orderID}>
+                      <td>{reservation.orderID}</td>
+                      <td>{reservation.fullName}</td>
+                      <td>{reservation.emailAddress}</td>
+                      <td>{reservation.resDate} at {reservation.resTime}</td>
+                      <td>{reservation.table}</td>
+                      <td>
+                        <button type="button" onClick={() => cancelReservation(reservation.orderID)}>x</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         </div>

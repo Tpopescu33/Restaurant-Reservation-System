@@ -38,6 +38,7 @@ const Login = (props) => {
 
                 history.push('/Profile');
                 
+                
             }
             else if (jsonData.role === "admin"){
                 setIsAuth(true)
@@ -59,45 +60,25 @@ const Login = (props) => {
 
 
     return (
-        
-        <div>
-            <html lang="en">
-            <head>
-                <meta charSet="UTF-8"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <title> Tasty- Login</title>
-                
-            </head>
-            
-            <body>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <div class="login-page">
-                    <h2 class="center">Member Login</h2>
-                    <div class="center">
-                        <form class = "login-form" onSubmit={submitForm}>
-                            <div class = "form-user">
-                                <input type="text" class="form-control" id= "email" name="Email" placeholder="Email" required="required"
+                <div class="res-background">
+                    <h1 class="title-res">Member Login</h1>
+                    
+                        <form class = "res-form" onSubmit={submitForm}>
+                            
+                                <input type="text" class="form1" id= "email" name="Email" placeholder="Email" required="required"
                                 value = {email}
                                 onChange={e=>setEmail(e.target.value)}/>
-                            </div>
-                            <div class = "form-password">
-                                <input type="password" class="form-control" name="password" placeholder="Password" required="required"
+                            
+                                <input type="password" class="form1" name="password" placeholder="Password" required="required"
                                 value = {password}
                                 onChange={e=>setPassword(e.target.value)}/> 
-                            </div>
-                            <button class="btn-submit-fn" type="submit" name="Sign-in" onClick={submitForm}>Sign in</button>
+                            
+                            <button class="btn-submit" style={{width: "20%"}} type="submit" name="Sign-in" onClick={submitForm}>Sign in</button>
                         </form>
                         <p class="Not-Register">Don't have an account? <Link to="/Registration"><u><b>   Register here!   </b></u></Link></p>
-                    </div>
+                    
                 </div>
-                </body>
-            </html>
-        </div>
+         
     )
 }
 
