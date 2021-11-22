@@ -48,7 +48,10 @@ const Reservation = (props) => {
     const [creditCardNum, setCreditCardNum] = useState("")
     const [expDate, setExpDate] = useState("")
     const [billZipCode, setBillZipCode] = useState("")
-
+    const [ccNumError, setccNumErr] = useState('')
+    const [ccDateError, setccDateErr] = useState('')
+    const [ccZipCodeError, setccZipCodeErr] = useState('')
+    const [dismissTrigger, setDismissTrigger] = useState(false)
 
 
 
@@ -113,6 +116,9 @@ const Reservation = (props) => {
         setCreditCardNum('')
         setExpDate('')
         setBillZipCode('')
+        setCreditCardNum('')
+        setExpDate('')
+        setBillZipCode('')
     }
     
     const handleTableString = () =>{
@@ -134,9 +140,10 @@ const Reservation = (props) => {
 
     const handleCreditCardSubmit = (e) => {
         const isValid = formValidation()
+        const isValidcc = ccFormValidation()
+        console.log(isValidcc, isValid)
 
-
-        if(isValid === true && isHoliday === true && tablesAvailable === true ){
+        if(isValid === true && isValidcc === true && isHoliday === true && tablesAvailable === true ){
             
             Axios.post('http://localhost:5001/MakeCreditCardReservation', {
                 userID: userID,
@@ -155,6 +162,7 @@ const Reservation = (props) => {
                 console.log("sent")
                 setPopup3Trigger(false)
                 setPopup6Trigger(true)
+                setDismissTrigger(true)
                 clearForm()
             }) 
         }
@@ -232,6 +240,44 @@ const Reservation = (props) => {
         
     }
 
+    const ccFormValidation = ()=> {
+        const ccNumError = {}
+        const ccDateError = {}
+        const ccZipCodeError = {}
+        let isValidcc = true
+
+        if (creditCardNum === '') {
+            ccNumError.errCCNum = "Credit Card Number Required";
+            isValidcc = false
+        } else if (!creditCardNum.match(/(^\d{16}$)/)){
+            ccNumError.errCCNum = "Credit Card Number is Invalid";
+            isValidcc = false
+        }
+
+        
+
+        if (expDate === '') {
+            ccDateError.errCCDate = "Expiration Date Required";
+            isValidcc = false
+        } else if (!expDate.match(/(^\d{6}$)/)) {
+            ccDateError.errCCDate = "Expiration Date invalid";
+            isValidcc = false
+        }
+
+        if (billZipCode === '') {
+            ccZipCodeError.errCCZip = "Billing Zip Code is Required";
+            isValidcc = false
+        } else if (!billZipCode.match(/(^\d{5}$)/)) {
+            ccZipCodeError.errCCZip = "Billing Zip Code is Invalid";
+            isValidcc = false
+        }
+        setccDateErr(ccDateError)
+        setccNumErr(ccNumError)
+        setccZipCodeErr(ccZipCodeError)
+        return isValidcc;
+        
+    }
+
     const formValidation =()=>{
         const fullNameError = {}
         const contactNumberError =  {}
@@ -284,7 +330,7 @@ const Reservation = (props) => {
     }
 
     console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table, tableString, creditCardNum, expDate, billZipCode,submitTrigger)
-
+    console.log(ccZipCodeError,ccNumError,ccDateError)
     const testResTable=() => {
         console.log(reservedTables)
     }
@@ -303,6 +349,12 @@ const Reservation = (props) => {
             setNumGuests(0)
         }
     }
+    const checkCCSubmit = () => {
+        if (submitTrigger > 0) {
+            console.log("test")
+            handleCreditCardSubmit()
+        }
+    }
 
     useEffect(()=> checkIfUser(),[])
     useEffect(()=> checkHoliday(),[handleSubmit])
@@ -313,7 +365,7 @@ const Reservation = (props) => {
     useEffect(()=> checkArray(), [tempReservedTablesArray])
     useEffect(()=> handleTableString(), [table])
     useEffect(()=> checkGuestNumber(), [numGuests])
-    useEffect(()=> handleCreditCardSubmit(), [submitTrigger])
+    useEffect(()=> checkCCSubmit(), [submitTrigger])
 
     return (
         <div>
@@ -474,7 +526,7 @@ const Reservation = (props) => {
                             <h3>We require a Credit Card on file to reserve a table on a Holiday</h3>
                             <h3>Please enter credit card information</h3>
                         </Popup2>
-                        <Popup3 trigger={popup3Trigger} setTrigger={setPopup3Trigger} setSubmitTrigger={setSubmitTrigger} submitTrigger={submitTrigger} setTrigger4={setPopup6Trigger} trigger4={popup6Trigger}>
+                        <Popup3 trigger={popup3Trigger} dismissTrigger={setDismissTrigger} setTrigger={setPopup3Trigger} setSubmitTrigger={setSubmitTrigger} submitTrigger={submitTrigger} setTrigger4={setPopup6Trigger} trigger4={popup6Trigger}>
 
                             <h3>Enter Credit Card Info Below</h3>
                             <div className="res-form">
@@ -491,6 +543,10 @@ const Reservation = (props) => {
                             name="creditCardNum"
                             placeholder="Credit card number"
                         />  
+                        {Object.keys(ccNumError).map((key)=>{
+                            return <div 
+                            className = "err-msg">{ccNumError[key]}</div>
+                    })}
                         <label>Enter Expiration Date:</label>
                          <input
                             className="form4"
@@ -504,6 +560,10 @@ const Reservation = (props) => {
                             name="expDate"
                             placeholder="MM/YYYY"
                         />  
+                        {Object.keys(ccDateError).map((key)=>{
+                            return <div 
+                            className = "err-msg">{ccDateError[key]}</div>
+                    })}
                         <label>Enter Billing Zipcode:</label>
                          <input
                             className="form4"
@@ -515,8 +575,12 @@ const Reservation = (props) => {
                             type="Int"
                             
                             name="Billing ZipCode"
-                            placeholder="xxxxx or xxxxx-xxxx"
+                            placeholder="xxxxx"
                         />  
+                        {Object.keys(ccZipCodeError).map((key)=>{
+                            return <div 
+                            className = "err-msg">{ccZipCodeError[key]}</div>
+                    })}
                         {/* {Object.keys(numGuestsErr).map((key)=>{
                             return <div 
                             className = "err-msg">{numGuestsErr[key]}</div>

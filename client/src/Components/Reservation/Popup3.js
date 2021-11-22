@@ -6,7 +6,10 @@ function Popup3(props) {
 
     const handleAccept = () => {
         props.setSubmitTrigger(props.submitTrigger + 1)
+
+        if (props.dismissTrigger === false) {
         props.setTrigger(false)
+        }
        
     }
     return (props.trigger) ? (
