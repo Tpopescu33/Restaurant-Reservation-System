@@ -558,7 +558,7 @@ const Reservation = (props) => {
                             type="text"
                             
                             name="expDate"
-                            placeholder="MM/YYYY"
+                            placeholder="MMYYYY"
                         />  
                         {Object.keys(ccDateError).map((key)=>{
                             return <div 
