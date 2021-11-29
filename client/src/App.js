@@ -4,6 +4,7 @@ import Home from './Components/Home/Home'
 import NavBar from './Components/Navbar/NavBar'
 import Login from './Components/Login/Login'
 import Admin from './Components/Admin/Admin';
+import Menu from './Components/Menu/menu';
 import Registration from './Components/Registration/Registration'
 import Reservation from './Components/Reservation/Reservation'
 import Profile from './Components/Profile/Profile';
@@ -25,6 +26,7 @@ function App() {
 
             <div className='container'>
               <Route exact path="/" component={Home} />
+              <Route exact path="/menu" component={Menu} />
 
           <Route path="/login">
              <Login isAuth={isAuth} setIsAuth={setIsAuth} userID={userID} setUserID={setUserID} isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>
