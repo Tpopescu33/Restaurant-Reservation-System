@@ -212,7 +212,8 @@ app.post("/MakeReservation", (req, res) => {
         console.log(err);
       } else {
         console.log("success");
-        res.send("Values inserted");
+        
+        return res.json("Values inserted");
       }
     }
   )
@@ -241,7 +242,8 @@ app.post('/MakeCreditCardReservation', (req,res) => {
       console.log(err)
     } else {
       console.log("success")
-      res.send("Values inserted")
+      
+      return res.json("Values inserted")
     }
   })
   
@@ -337,6 +339,7 @@ app.post("/Profile-edit", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+module.exports = app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
