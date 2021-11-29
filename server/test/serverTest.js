@@ -109,10 +109,11 @@ describe('restaurant api', () =>
             it("should post user data", (done) => {
                 chai.request(server)
                     .get('/GetReservedTables')
+                    .query({resDate:"2021-12-16", resTime:"7:30"})
                     .then((res)=>{
                         console.log(res.body);
-                        const body = res.body;
-                        body.should.have.property('table');
+                        const body = res.body[0];
+                        body.should.have.property('table')
                         done();
                     })
             })
