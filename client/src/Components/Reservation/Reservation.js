@@ -198,6 +198,7 @@ const Reservation = (props) => {
             }).then(() => {
                 console.log("sent")
                 clearForm()
+                setPopup6Trigger(true)
             }) 
         }
        
