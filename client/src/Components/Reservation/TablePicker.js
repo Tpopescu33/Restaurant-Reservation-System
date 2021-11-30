@@ -378,17 +378,17 @@ const loadInfo = (e) => {
     setTable(props.table)
     setNumGuests(props.numGuests)
     
-    console.log("table picked", table)
-    console.log("num guests", numGuests)
+    // console.log("table picked", table)
+    // console.log("num guests", numGuests)
     
-    console.log("counter", guestCounter)
+    // console.log("counter", guestCounter)
 }
 
 const loadInfo2 = (e) => {
    
     setReservedTables(props.reservedTables)
     
-    console.log("reserved tables", reservedTables)
+  //  console.log("reserved tables", reservedTables)
     
 }
    
@@ -461,7 +461,7 @@ useEffect(()=> loadInfo2, [props.trigger, props.reservedTables])
 
                 {(activeButtonC3===true && !reservedTables.includes("C3"))? 
                 (<button className="table-c3-btn-active" onClick={handleActiveC3}>4 Persons</button>) : (!reservedTables.includes("C3"))?
-                (<button className="table-c3-btn" onClick={handleC3}>4 Persons</button>) : 
+                (<button className="table-c3-btn" onClick={handleC3} data-testid="testc3">4 Persons</button>) : 
                 (<button className="table-c3-btn-reserved">4 Persons</button>)}
 
                 {(activeButtonC4===true && !reservedTables.includes("C4"))? 

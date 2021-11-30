@@ -332,10 +332,10 @@ const Reservation = (props) => {
         return isValid;
     }
 
-    console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table, tableString, creditCardNum, expDate, billZipCode,submitTrigger)
-    console.log(ccZipCodeError,ccNumError,ccDateError)
+    // console.log(userID,fullName, contactNumber,emailAddress, numGuests, resDate, resTime, tablePicked, table, tableString, creditCardNum, expDate, billZipCode,submitTrigger)
+    // console.log(ccZipCodeError,ccNumError,ccDateError)
     const testResTable=() => {
-        console.log(reservedTables)
+      //  console.log(reservedTables)
     }
     const checkIfUser =()=> {
         
@@ -390,7 +390,8 @@ const Reservation = (props) => {
                         />   
                         {Object.keys(fullNameErr).map((key)=>{
                             return <div 
-                            className = "err-msg">{fullNameErr[key]}</div>
+                            className = "err-msg"
+                            >{fullNameErr[key] }</div>
                     })}     
 
                          <label>Contact Number:</label>
@@ -510,11 +511,11 @@ const Reservation = (props) => {
                         {(tablePicked===true)? (
                             <div>
                             <button date-testid="submitRes" onClick={handleSubmit} className="btn-submit">Submit Reservation</button>
-                            <button date-testid="submitRes" onClick={pickTable} className="btn-submit">Edit Table</button> 
+                            <button date-testid="pickTable" onClick={pickTable} className="btn-submit">Edit Table</button> 
                             <button date-testid="submitRes" onClick={clearForm} className="btn-clear">Clear Form</button>
                             </div>):(
                             <div>
-                            <button date-testid="submitRes" onClick={pickTable} className="btn-submit">Pick a Table</button> 
+                            <button date-testid="pickTable" onClick={pickTable} className="btn-submit">Pick a Table</button> 
                             <button date-testid="submitRes" onClick={clearForm} className="btn-clear">Clear Form</button>  
                             </div> 
                         )}
