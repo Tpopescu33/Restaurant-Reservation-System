@@ -28,7 +28,7 @@ const Reservation = (props) => {
     const [popup6Trigger, setPopup6Trigger] = useState(false)
     const [tablesAvailable, setTablesAvailable] = useState(true)
     const [isHoliday, setIsHoliday] = useState(false);
-    const [holidayList, setHolidayList] = useState(["2021-07-04","2021-11-26","2021-11-25"]);
+    const [holidayList, setHolidayList] = useState(["2021-07-04","2021-11-26","2021-11-25","2021-12-25"]);
     const [fullName, setFullName] = useState('');
     const [contactNumber, setContactNumber] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
@@ -451,7 +451,7 @@ const Reservation = (props) => {
                             id="resDate"
                             data-testid="testResDate"
                             
-                            min='2021-11-14'
+                            min='2021-12-01'
                             required
                             value={resDate}
                             onChange={(e) => setResDate(e.target.value)}

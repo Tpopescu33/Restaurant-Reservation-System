@@ -172,8 +172,8 @@ describe("Input Component", ()=> {
         fireEvent.click(screen.getByText("Enter Info"))
        // fireEvent.change(setPopup3Trigger, {target: {value: true}})
         const zipCode = getByTestId("testBillZipCode");
-        fireEvent.change(expDate, {target: {value: "77777"}})
-        expect(expDate.value).toBe("77777")
+        fireEvent.change(zipCode, {target: {value: "77777"}})
+        expect(zipCode.value).toBe("77777")
     })
    
 })
