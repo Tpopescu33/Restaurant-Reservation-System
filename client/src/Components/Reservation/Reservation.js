@@ -93,7 +93,7 @@ const Reservation = (props) => {
             
             
         }).catch((error)=> {
-            console.log(error)
+            //console.log(error)
         } )
     }}
 
@@ -119,6 +119,9 @@ const Reservation = (props) => {
         setCreditCardNum('')
         setExpDate('')
         setBillZipCode('')
+        setccDateErr('')
+        setccNumErr('')
+        setccZipCodeErr('')
     }
     
     const handleTableString = () =>{
@@ -467,6 +470,7 @@ const Reservation = (props) => {
                 className="form4"
                 name="selectList" 
                 id="selectList"
+                data-testid="testSelectList"
                 type ="text"
                 value={resTime}
                 placeholder= "Select Time"
