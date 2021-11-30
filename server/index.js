@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
-  //password: "825351",
-  password: "password",
+  password: "825351",
+  // password: "password",
   port: 3306,
   database: "resturant-reservation-DB",
 });
@@ -166,7 +166,7 @@ app.get("/GetReservedTables", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        res.send(result);
+        res.json(result);
         console.log(result, resDate, resTime);
       }
     }
@@ -212,7 +212,8 @@ app.post("/MakeReservation", (req, res) => {
         console.log(err);
       } else {
         console.log("success");
-        res.send("Values inserted");
+        
+        return res.json("Values inserted");
       }
     }
   )
@@ -241,7 +242,8 @@ app.post('/MakeCreditCardReservation', (req,res) => {
       console.log(err)
     } else {
       console.log("success")
-      res.send("Values inserted")
+      
+      return res.json("Values inserted")
     }
   })
   
@@ -337,6 +339,7 @@ app.post("/Profile-edit", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+module.exports = app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
