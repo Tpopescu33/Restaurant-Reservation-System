@@ -40,7 +40,7 @@ describe('restaurant api', () =>
         describe("get /profile", ()=>{
             it("should get user data", (done) => {
                 chai.request(server)
-                    .get('/Profile-info/19')
+                    .get('/Profile-info/3')
                     .then((res)=>{
                         console.log(res.body);
                         const body = res.body;
