@@ -414,6 +414,7 @@ const handleDismiss = (e) => {
     clearButtons()
     
 }
+
 useEffect(() => loadInfo, [props.trigger])
 useEffect(()=> loadInfo2, [props.trigger, props.reservedTables])
 

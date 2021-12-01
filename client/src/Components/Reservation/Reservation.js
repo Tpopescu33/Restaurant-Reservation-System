@@ -197,6 +197,7 @@ const Reservation = (props) => {
 
             }).then(() => {
                 console.log("sent")
+                setPopup6Trigger(true)
                 clearForm()
             }) 
         }
@@ -457,7 +458,7 @@ const Reservation = (props) => {
                             onChange={(e) => setResDate(e.target.value)}
                             type="date"
                             name="resDate"
-                            placeholder="Date"
+                            placeholder="Date+.0.8"
                         />  
                         {Object.keys(resDateErr).map((key)=>{
                             return <div 
