@@ -12,6 +12,7 @@ const Profile = () => {
   const [emailError, setEmailError] = useState("");
   const [point, setEarnedPoint] = useState([]);
   const [code, setCode] = useState("");
+  var [counter, setCounter] = useState(0)
 
   const getInfo = async (e) => {
     try {
@@ -30,7 +31,7 @@ const Profile = () => {
   useEffect(() => {
     getInfo();
   });
-
+  useEffect(() => getInfo(), [counter])
   
 
 //   const getPoint = async (e) => {
@@ -62,6 +63,7 @@ const Profile = () => {
             const jsonData = await response.json();
             if (jsonData === "Redeemed") {
                 alert("Thank you for your business.");
+                setCounter(counter + 1)
             } else {
                 alert("Invalid code. Please try different one.");
             }
