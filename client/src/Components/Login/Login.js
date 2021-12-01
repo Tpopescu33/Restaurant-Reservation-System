@@ -60,7 +60,7 @@ const Login = (props) => {
 
 
     return (
-                <div class="res-background">
+                <div class="res-background" style={{height: "1000px"}}>
                     <h1 class="title-res">Member Login</h1>
                     
                         <form class = "res-form" onSubmit={submitForm}>
